@@ -309,7 +309,7 @@ ul {
 }
 
 .header .site-description nav ul svg {
-    max-height: 15px;
+    max-height: 20px;
 }
 
 .header .site-description .scheme-toggle {
@@ -387,9 +387,17 @@ ul {
     padding: 0px 6px;
     color: #3700ff;
     line-height: 20px;
-    font-size: 0.85em;
+    font-size: 11px;
     text-decoration: none;
     margin: 0 10px 0 0;
+}
+
+.post .description a  {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.8em;
+    font-size: 14px;
 }
 
 .list .posts .post-header .meta {
