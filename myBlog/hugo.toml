@@ -1,0 +1,52 @@
+baseURL = "https://QingZ11.github.io/"
+languageCode = "zh-cn"
+title = "Steam's Blog Init"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  author = "QingZ11"
+  description = "十几亿分之一的普通人，记录从零开始的那些事..."
+  github = "QingZ11"
+  twitter = "yevazn"
+  instagram = "evaz1879"
+  email = "evaz1879@gmail.com"
+  url = "https://QingZ11.github.io/"
+  keywords = "cat, diary"
+  rss = true
+  lastmod = true
+  userStatusEmoji = "🐱"
+  favicon = "/images/profile01.jpg"
+  avatar = "/images/avatar.jpg"
+  headerIcon = "/images/avatarY.jpg"
+  location = "China"
+  enableGitalk = true
+
+#  [params.gitalk]
+#    clientID = "Your client ID"
+#    clientSecret = "Your client secret"
+#    repo = "repo"
+#    owner = "MeiK2333"
+#    admin = "MeiK2333"
+#    id = "location.pathname"
+#    labels = "gitalk"
+#    perPage = 15
+#    pagerDirection = "last"
+#    createIssueManually = true
+#    distractionFreeMode = false
+
+  [[params.links]]
+    title = "Link"
+    href = "https://github.com/QingZ11"
+#  [[params.links]]
+#    title = "Link2"
+#    href = "https://meik2333.com"
+#    icon = "https://meik2333.com/images/avatar.png"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+[services]
+  [services.googleAnalytics]
+    ID = "G-60XM8Y3EGW"
