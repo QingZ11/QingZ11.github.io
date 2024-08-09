@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>我家猫 on Steam&#39;s Blog Init</title>
+    <link>https://qingz11.github.io/tags/%E6%88%91%E5%AE%B6%E7%8C%AB/</link>
+    <description>Recent content in 我家猫 on Steam&#39;s Blog Init</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 09 Aug 2024 16:11:12 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/%E6%88%91%E5%AE%B6%E7%8C%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我和猫室友们的 2023 年</title>
+      <link>https://qingz11.github.io/post/20230213/</link>
+      <pubDate>Mon, 13 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/20230213/</guid>
+      <description>如果可以，我也想当一只猫。</description>
+    </item>
+    <item>
+      <title>我和猫室友们的 2022 年</title>
+      <link>https://qingz11.github.io/post/20220808/</link>
+      <pubDate>Mon, 19 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/20220808/</guid>
+      <description>番茄常抬头望着天，我也不知道他在看什么，我只知道我在看他。</description>
+    </item>
+  </channel>
+</rss>
