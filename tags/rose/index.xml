@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rose on Steam&#39;s Blog Init</title>
-    <link>http://localhost:1313/tags/rose/</link>
+    <link>http://localhost:56335/tags/rose/</link>
     <description>Recent content in Rose on Steam&#39;s Blog Init</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 08 Aug 2024 22:22:37 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/rose/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:56335/tags/rose/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我和我的父辈</title>
-      <link>http://localhost:1313/post/20211004/</link>
+      <link>http://localhost:56335/post/20211004/</link>
       <pubDate>Mon, 04 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/20211004/</guid>
+      <guid>http://localhost:56335/post/20211004/</guid>
       <description>大多数的国产片剧情煽情，即便是几年前看得热血沸腾的红海行动也是，看完之后并不会再看。</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>记一件事 on Steam&#39;s Blog Init</title>
-    <link>http://localhost:1313/tags/%E8%AE%B0%E4%B8%80%E4%BB%B6%E4%BA%8B/</link>
+    <link>http://localhost:56335/tags/%E8%AE%B0%E4%B8%80%E4%BB%B6%E4%BA%8B/</link>
     <description>Recent content in 记一件事 on Steam&#39;s Blog Init</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 08 Aug 2024 22:21:23 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E8%AE%B0%E4%B8%80%E4%BB%B6%E4%BA%8B/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:56335/tags/%E8%AE%B0%E4%B8%80%E4%BB%B6%E4%BA%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>写在新冠康复时</title>
-      <link>http://localhost:1313/post/20230526md/</link>
+      <link>http://localhost:56335/post/20230526md/</link>
       <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/20230526md/</guid>
+      <guid>http://localhost:56335/post/20230526md/</guid>
       <description>不知道是幸运还是不幸，现在才是第一次得新冠。</description>
     </item>
   </channel>
