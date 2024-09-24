@@ -6,8 +6,15 @@
     <description>Recent content on Steam&#39;s Blog Init</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Sep 2024 13:14:55 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Sep 2024 03:17:27 +0800</lastBuildDate>
     <atom:link href="https://qingz11.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>缺少了一个大格局</title>
+      <link>https://qingz11.github.io/post/wang-er/</link>
+      <pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/wang-er/</guid>
+      <description>积极向上虽然是为人的准则，也不该时刻挂在嘴边。</description>
+    </item>
     <item>
       <title>最后一份工</title>
       <link>https://qingz11.github.io/post/my-job/</link>
@@ -262,9 +269,23 @@
     </item>
     <item>
       <title>更新博客主题 08.08</title>
-      <link>https://qingz11.github.io/post/2024080809/</link>
+      <link>https://qingz11.github.io/post/2024080809-copy/</link>
       <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/2024080809/</guid>
+      <guid>https://qingz11.github.io/post/2024080809-copy/</guid>
+      <description>Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。</description>
+    </item>
+    <item>
+      <title>更新博客主题 08.08</title>
+      <link>https://qingz11.github.io/post/hugo-date/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/hugo-date/</guid>
+      <description>Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。</description>
+    </item>
+    <item>
+      <title>更新博客主题 08.08</title>
+      <link>https://qingz11.github.io/post/hugo-url/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/hugo-url/</guid>
       <description>Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。</description>
     </item>
     <item>
