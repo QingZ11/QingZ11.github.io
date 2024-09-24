@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://qingz11.github.io/css/light.css' />
     <link rel="stylesheet" href='https://qingz11.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://qingz11.github.io/css/syntax.css' />
-    <title>更新博客主题 08.08 - Steam&#39;s Blog Init</title>
+    <title>hugo 文章添加失败的原因 - Steam&#39;s Blog Init</title>
     
     <link rel="icon" type="image/x-icon" href='/images/profile01.jpg'>
     
@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。" />
+  content="没想到二分法，又派上用场了呢。" />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
@@ -26,9 +26,9 @@
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="更新博客主题 08.08 - Steam&#39;s Blog Init" />
+<meta name="twitter:title" content="hugo 文章添加失败的原因 - Steam&#39;s Blog Init" />
 <meta name="twitter:description"
-  content="Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。" />
+  content="没想到二分法，又派上用场了呢。" />
 <meta name="twitter:site" content="https://qingz11.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -36,17 +36,17 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="更新博客主题 08.08 - Steam&#39;s Blog Init">
+<meta property="og:title" content="hugo 文章添加失败的原因 - Steam&#39;s Blog Init">
 <meta property="og:description"
-  content="Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。" />
+  content="没想到二分法，又派上用场了呢。" />
 <meta property="og:url" content="https://qingz11.github.io/post/hugo-date/" />
-<meta property="og:site_name" content="更新博客主题 08.08" />
+<meta property="og:site_name" content="hugo 文章添加失败的原因" />
 <meta property="og:image"
   content="https://qingz11.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2024-08-08 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2024-09-24 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -148,19 +148,19 @@ if (!doNotTrack) {
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://qingz11.github.io/post/hugo-date/">更新博客主题 08.08</a>
+                    <a href="https://qingz11.github.io/post/hugo-date/">hugo 文章添加失败的原因</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Thu, 08 Aug 2024 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Tue, 24 Sep 2024 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Thu, 08 Aug 2024 00:00:00 &#43;0000</relative-time>
+                    Tue, 24 Sep 2024 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 25 Sep 2024 03:17:27 &#43;0800"
+                  Modified <relative-time datetime="Wed, 25 Sep 2024 03:35:25 &#43;0800"
                     class="no-wrap">
-                    Wed, 25 Sep 2024 03:17:27 &#43;0800</relative-time>
+                    Wed, 25 Sep 2024 03:35:25 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -190,7 +190,7 @@ if (!doNotTrack) {
                         </div>
                       </div>
                     </details-menu>
-                      287 Words
+                      525 Words
                     
 
                   </div>
@@ -222,15 +222,43 @@ if (!doNotTrack) {
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>本来打算花 1 个小时更新下主题，然后再更新下博客，结果从八号到九号，横跨了了一个零点和一点，到现在才弄好。</p>
-<p>其实想测试下这个博客是否会如自己设想地那般更新。</p>
-<hr>
-<p>这是个下划线，这是来自 8 月 9 号的更新：果然链接生成的 url 还是以 localhost 为开头，似乎和 toml 的变量命名规则有关系，baseURL 和 BaseURL 是 2 个不同的变量，但是在同等命名情况下，languageCode 和 LanguageCode 变量似乎又是通用的。不解。</p>
-<p>【后续更新】</p>
-<p>同命令大小毫无关系，而是 hugo 构建网站时，需要通过 <code>env HUGO_ENV=&quot;production&quot; hugo -t github-style</code> 命令来实现 url 转换，修正了 url，我的 GA 统计也正常了。上面命令的 <code>github-style</code> 是本博客采用的 hugo 主题名。</p>
-<h2 id="每日一照">每日一照</h2>
-<p>这是今日的晚饭，白灼？水煮小青菜 &amp; 韭菜炒虾干。</p>
-<p><img src="https://github.com/user-attachments/assets/71955ca0-a19a-49fe-b749-7712982ee8dd" alt="image"></p>
+                <article class="markdown-body entry-content container-lg"><p>事情发生在刚更新博客的时候，执行完  <code>env HUGO_ENV=&quot;production&quot; hugo -t github-style</code> 之后，Pages 的数量没有变化——正常流程应该是 <code>hugo server</code> 起来在本地看效果之后再推送到远端，但是我懒。</p>
+<p><img src="https://github.com/user-attachments/assets/c8a55051-416a-4e81-9675-b784a26e2e96" alt=""></p>
+<p>所以，看到 pages 没有变化，但是 <code>git add .</code> 里面有信息变更，还是 push 上去了。结果，正式环境没有新推文。</p>
+<p>好吧，开始 debug。以下按照尝试的先后，依次排序：</p>
+<ol>
+<li>不能新建文件了？
+<ol>
+<li>尝试新建文件，再执行命令，pages + 1；</li>
+<li>不是这个原因；</li>
+</ol>
+</li>
+<li>文件命令问题？
+<ol>
+<li>换命名，新建原命名文件，再执行命令，pages +1；</li>
+<li>不是这个原因；</li>
+</ol>
+</li>
+<li>正文内容问题？
+<ol>
+<li>二分法，正文内容对半，留上 / 下部分，砍执行命令，pages 没变化；</li>
+<li>不是这个原因；</li>
+</ol>
+</li>
+<li>标题问题？
+<ol>
+<li>改标题，命名为纯数字，砍执行命令，pages 没变化；</li>
+<li>不是这个原因；</li>
+</ol>
+</li>
+</ol>
+<p>标题排查完之后，下面的字段是 date，hugo 的 post 格式如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">title: <span class="s2">&#34;hugo 文章添加失败的原因&#34;</span>
+</span></span><span class="line"><span class="cl">date: 2024-09-24
+</span></span><span class="line"><span class="cl">summary: <span class="s2">&#34;没想到二分法，又派上用场了呢。&#34;</span>
+</span></span><span class="line"><span class="cl">tags: <span class="o">[</span><span class="s1">&#39;日常记录&#39;</span>,<span class="s1">&#39;hugo&#39;</span><span class="o">]</span>
+</span></span></code></pre></div><p>当我看到日期是，会有个想法是：难道不能写当天，毕竟现在是凌晨三点半。可能 hugo 读取的并非我本地时间，而是另外某个时区。瞬间，我把时间改成了前日，！！！！pages +1</p>
+<p>好吧，日期不能写当天，或者说是未来（具体 hugo 时间以哪个时区为准，就不查证了）。</p>
 </article>
               </div>
             </div>
