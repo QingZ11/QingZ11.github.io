@@ -6,8 +6,15 @@
     <description>Recent content in 日常记录 on Steam&#39;s Blog Init</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 25 Sep 2024 10:56:48 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 03 Nov 2024 17:01:31 +0800</lastBuildDate>
     <atom:link href="https://qingz11.github.io/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优化了一次咖啡泡法</title>
+      <link>https://qingz11.github.io/post/coffee-please-02/</link>
+      <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/coffee-please-02/</guid>
+      <description>在喝了人生第一次他人冲泡的手冲咖啡之后。</description>
+    </item>
     <item>
       <title>hugo 文章添加失败的原因</title>
       <link>https://qingz11.github.io/post/hugo-date/</link>
