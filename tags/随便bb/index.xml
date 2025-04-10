@@ -6,8 +6,15 @@
     <description>Recent content in 随便bb on Steam&#39;s Blog Init</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 10 Feb 2025 19:15:44 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Apr 2025 02:02:24 +0800</lastBuildDate>
     <atom:link href="https://qingz11.github.io/tags/%E9%9A%8F%E4%BE%BFbb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>无知者的 ai 言论</title>
+      <link>https://qingz11.github.io/post/small-potato-ai/</link>
+      <pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/small-potato-ai/</guid>
+      <description>感谢 ChatGPT 带来的新世界。</description>
+    </item>
     <item>
       <title>不负责任的 ai 工具小测</title>
       <link>https://qingz11.github.io/post/perplexity-gemini-deepseek-poe/</link>
