@@ -3,8 +3,8 @@
   --color-page-header-bg: #0d1117;
   --color-marketing-icon-primary: #79c0ff;
   --color-marketing-icon-secondary: #1f6feb;
-  --color-diff-blob-addition-fg: #c9d1d9;
-  --color-diff-blob-deletion-fg: #c9d1d9;
+  --color-diff-blob-addition-fg: #006efd;
+  --color-diff-blob-deletion-fg: #006efd;
   --color-diff-blob-expander-icon: #8b949e;
   --color-diffstat-deletion-border: rgba(240,246,252,0.1);
   --color-diffstat-addition-border: rgba(240,246,252,0.1);
@@ -703,7 +703,7 @@
   --color-label-warning-text: #e3b341;
   --color-logo-subdued: #30363d;
   --color-markdown-blockquote-border: #3b434b;
-  --color-markdown-code-bg: rgba(240, 246, 252, 0.15);
+  --color-markdown-code-bg: rgba(214, 243, 255, 0.15);
   --color-markdown-frame-border: #3b434b;
   --color-markdown-table-border: #3b434b;
   --color-markdown-table-tr-border: #272c32;

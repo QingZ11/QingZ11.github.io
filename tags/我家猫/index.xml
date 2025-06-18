@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>我家猫 on 喷射战士训练营</title>
-    <link>https://qingz11.github.io/tags/%E6%88%91%E5%AE%B6%E7%8C%AB/</link>
+    <link>http://localhost:1313/tags/%E6%88%91%E5%AE%B6%E7%8C%AB/</link>
     <description>Recent content in 我家猫 on 喷射战士训练营</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 13 Aug 2024 14:46:02 +0800</lastBuildDate>
-    <atom:link href="https://qingz11.github.io/tags/%E6%88%91%E5%AE%B6%E7%8C%AB/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E6%88%91%E5%AE%B6%E7%8C%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>宅家的和猫日常 08.13</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-02/</link>
+      <link>http://localhost:1313/post/my-cute-cat-02/</link>
       <pubDate>Tue, 13 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-02/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-02/</guid>
       <description>失业在家快乐的也许不只是我，还有我家的猫们。</description>
     </item>
     <item>
       <title>我和猫室友们的 2023 年</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-01/</link>
+      <link>http://localhost:1313/post/my-cute-cat-01/</link>
       <pubDate>Mon, 13 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-01/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-01/</guid>
       <description>如果可以，我也想当一只猫。</description>
     </item>
     <item>
       <title>我和猫室友们的 2022 年</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-00/</link>
+      <link>http://localhost:1313/post/my-cute-cat-00/</link>
       <pubDate>Mon, 19 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-00/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-00/</guid>
       <description>番茄常抬头望着天，我也不知道他在看什么，我只知道我在看他。</description>
     </item>
   </channel>

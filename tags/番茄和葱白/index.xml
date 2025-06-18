@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>番茄和葱白 on 喷射战士训练营</title>
-    <link>https://qingz11.github.io/tags/%E7%95%AA%E8%8C%84%E5%92%8C%E8%91%B1%E7%99%BD/</link>
+    <link>http://localhost:1313/tags/%E7%95%AA%E8%8C%84%E5%92%8C%E8%91%B1%E7%99%BD/</link>
     <description>Recent content in 番茄和葱白 on 喷射战士训练营</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 13 Apr 2025 21:32:55 +0800</lastBuildDate>
-    <atom:link href="https://qingz11.github.io/tags/%E7%95%AA%E8%8C%84%E5%92%8C%E8%91%B1%E7%99%BD/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E7%95%AA%E8%8C%84%E5%92%8C%E8%91%B1%E7%99%BD/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我的猫室友们 vol.04</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-pic-04/</link>
+      <link>http://localhost:1313/post/my-cute-cat-pic-04/</link>
       <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-pic-04/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-pic-04/</guid>
       <description>难得的合影…</description>
     </item>
     <item>
       <title>我的猫室友们 vol.03</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-pic-03/</link>
+      <link>http://localhost:1313/post/my-cute-cat-pic-03/</link>
       <pubDate>Fri, 23 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-pic-03/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-pic-03/</guid>
       <description>大战一触即发，最终小黄败走阳台…</description>
     </item>
     <item>
       <title>我的猫室友们 vol.02</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-pic-02/</link>
+      <link>http://localhost:1313/post/my-cute-cat-pic-02/</link>
       <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-pic-02/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-pic-02/</guid>
       <description>小猫咪吃猫条 🐱</description>
     </item>
     <item>
       <title>宅家的和猫日常 08.13</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-02/</link>
+      <link>http://localhost:1313/post/my-cute-cat-02/</link>
       <pubDate>Tue, 13 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-02/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-02/</guid>
       <description>失业在家快乐的也许不只是我，还有我家的猫们。</description>
     </item>
     <item>
       <title>我的猫室友们 vol.01</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-pic-01/</link>
+      <link>http://localhost:1313/post/my-cute-cat-pic-01/</link>
       <pubDate>Tue, 23 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-pic-01/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-pic-01/</guid>
       <description>猫室友们的第一批图集 🐱</description>
     </item>
     <item>
       <title>我和猫室友们的 2023 年</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-01/</link>
+      <link>http://localhost:1313/post/my-cute-cat-01/</link>
       <pubDate>Mon, 13 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-01/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-01/</guid>
       <description>如果可以，我也想当一只猫。</description>
     </item>
     <item>
       <title>我和猫室友们的 2022 年</title>
-      <link>https://qingz11.github.io/post/my-cute-cat-00/</link>
+      <link>http://localhost:1313/post/my-cute-cat-00/</link>
       <pubDate>Mon, 19 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://qingz11.github.io/post/my-cute-cat-00/</guid>
+      <guid>http://localhost:1313/post/my-cute-cat-00/</guid>
       <description>番茄常抬头望着天，我也不知道他在看什么，我只知道我在看他。</description>
     </item>
   </channel>
