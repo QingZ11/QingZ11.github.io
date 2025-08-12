@@ -58,17 +58,20 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-60XM8Y3EGW"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-60XM8Y3EGW', { 'anonymize_ip': false });
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-60XM8Y3EGW"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-60XM8Y3EGW');
+        }
+      </script>
 
 
 </head>
@@ -220,15 +223,15 @@ if (!doNotTrack) {
 <p>早上出去晃了一下，回小区的路上，突然冷清的小区热闹了起来，不再是走两分钟也见不到一个人的小区了，好似人气满满的杭州又回来了，清冷，热闹，清冷，再热闹。一个循环，嗯，依旧是一个旁观者。</p>
 <p>晚上煮了一条鱼，不得不说鱼很好吃啊。昨天买了草莓，开心，终于吃到了草莓，还在超市旁吃了一碗面，真是好吃，汤很好喝，嗯，泡面汤的那种好喝，不知道这些汤是怎么熬出来的，当然啦，自己一锅乱炖煮出来的番茄牛腩也挺好喝的。</p>
 <h2 id="20180222--0008">2018.02.22  00:08</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># remove the blank space&lt;br&gt;</span>
-</span></span><span class="line"><span class="cl">def remove_blank<span class="o">(</span>s<span class="o">)</span>:&lt;br&gt;
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> s<span class="o">[</span>0<span class="o">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span>:&lt;br&gt;
-</span></span><span class="line"><span class="cl">        <span class="nv">s</span> <span class="o">=</span> s<span class="o">[</span>1:<span class="o">]</span>&lt;br&gt;
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> s<span class="o">[</span>-1<span class="o">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span>:&lt;br&gt;
-</span></span><span class="line"><span class="cl">        <span class="nv">s</span> <span class="o">=</span> s<span class="o">[</span>:-1<span class="o">]</span>&lt;br&gt;
-</span></span><span class="line"><span class="cl">    print<span class="o">(</span>s<span class="o">)</span>&lt;br&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">remove_blank<span class="o">(</span><span class="s1">&#39;  hello world  yo &#39;</span><span class="o">)</span>&lt;br&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># remove the blank space&lt;br&gt;</span>
+</span></span><span style="display:flex;"><span>def remove_blank<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>:&lt;br&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> s<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span>:&lt;br&gt;
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> s<span style="color:#f92672">[</span>1:<span style="color:#f92672">]</span>&lt;br&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> s<span style="color:#f92672">[</span>-1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span>:&lt;br&gt;
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> s<span style="color:#f92672">[</span>:-1<span style="color:#f92672">]</span>&lt;br&gt;
+</span></span><span style="display:flex;"><span>    print<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>&lt;br&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>remove_blank<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;  hello world  yo &#39;</span><span style="color:#f92672">)</span>&lt;br&gt;
 </span></span></code></pre></div><p>啦啦啦啦啦，本来不想写日记的，突然，把这个课后作业做出来了，虽然实现的非常的不优雅，肯定有比这个更简洁的方式去掉一个字符串首位的空格，本来用了 s.pop()  方法，但是报错了，pop() 方法只能被 list 对象调用，突然想起来，可以直接丢掉首个字符，切片赋值给原字符串，开心 lol，虽然感觉好似有些蠢。</p>
 <p>还有一个报错信息：<code>indentationerror unindent does not match any outer indentation level</code>，搜索了下，结果就是不能 tab 和 空格 混用，python 真是个严格的语言呢，唔，让你老是忘记冒号，缩进，让你混用，哼，该，学了 python 会不会变得细心点，严谨点呢？母鸡，叹气，感觉自己好废柴，四十五度角仰望天花板，加油，怀挺</p>
 <p>今天去看小宝了，还是哼哼唧唧的，感觉好似长大了些，不过小朋友，看着看着感觉又缩水了，看着阿姐鼓呵斥老妈，有些小心疼，但是又无力，或者说是无心去阻拦，大概是，为什么呢？不想去忤逆反抗吗？母鸡，懦弱的自己啊。</p>

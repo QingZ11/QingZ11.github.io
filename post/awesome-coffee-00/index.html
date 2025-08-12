@@ -58,17 +58,20 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-60XM8Y3EGW"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-60XM8Y3EGW', { 'anonymize_ip': false });
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-60XM8Y3EGW"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-60XM8Y3EGW');
+        }
+      </script>
 
 
 </head>
@@ -240,8 +243,7 @@ if (!doNotTrack) {
 </ul>
 <p>关于用量，我一般用 20g 的咖啡，加 280 g 到 300 g 的水。如果是 15 g 的粉的话，加 225 g 到 240 g 的热水都可以。</p>
 <blockquote>
-<p>水粉比，即：注入（使用）的水量和咖啡粉的比例，一般根据制作手法不同，水：粉 在 7:1 到 16:1 之间——后面再说。</p>
-</blockquote>
+<p>水粉比，即：注入（使用）的水量和咖啡粉的比例，一般根据制作手法不同，水：粉 在 7:1 到 16:1 之间——后面再说。</p></blockquote>
 <p>如下图，将 20g 咖啡粉倒入容器中：</p>
 <p><img src="https://github.com/user-attachments/assets/ef05143c-f06c-4b84-9f06-d6d24d0c5762" alt="image"></p>
 <p>加水，这里我借鉴了手冲的手法——焖煮、分段注水：</p>
