@@ -189,3 +189,38 @@ body {
 .pinned-item-desc img {
   max-width: 100%;
 }
+
+/* 自定义行内代码样式 - 只针对行内代码，不影响代码块 */
+.markdown-body p > code,
+.markdown-body li > code,
+.markdown-body td > code,
+.markdown-body h1 > code,
+.markdown-body h2 > code,
+.markdown-body h3 > code,
+.markdown-body h4 > code,
+.markdown-body h5 > code,
+.markdown-body h6 > code,
+.markdown-body blockquote > code,
+.markdown-body em > code,
+.markdown-body strong > code {
+  background-color: var(--color-inline-code-bg) !important;
+  color: var(--color-inline-code-text) !important;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+/* 确保代码块内的代码不受影响 */
+.markdown-body pre code {
+  background-color: initial !important;
+  color: initial !important;
+}
+
+/* 暗黑模式下章节标题颜色 */
+[data-color-mode=dark] .markdown-body h1,
+[data-color-mode=dark] .markdown-body h2,
+[data-color-mode=dark] .markdown-body h3,
+[data-color-mode=dark] .markdown-body h4,
+[data-color-mode=dark] .markdown-body h5,
+[data-color-mode=dark] .markdown-body h6 {
+  color: var(--color-heading);
+}

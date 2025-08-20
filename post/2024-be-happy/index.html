@@ -17,6 +17,9 @@
     <meta name="theme-color" content="#1e2327">
 
     
+    
+
+    
     <meta name="description"
   content="这一年，我失去了两样东西：朋友和工作。" />
 <meta name="keywords"
@@ -75,6 +78,8 @@
 
 
 </head>
+<link rel="stylesheet" href="https://qingz11.github.io/css/outline-bullets.css" />
+
 
 <body>
   <div style="position: relative">
@@ -182,20 +187,12 @@
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
                     
-                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                    <button id="toc-toggle" onclick="clickToc()" class="btn m-0 mr-2 p-2" aria-label="Table of contents" aria-expanded="false" style="background: transparent !important; border: none; box-shadow: none;">
                       <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
-                    </summary>
-                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
-                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
-                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
-                        </div>
-                      </div>
-                    </details-menu>
-                      2053 Words
-                    
-
+                    </button>
+                    <span class="ml-2">2053 Words</span>
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
@@ -243,9 +240,30 @@
       </div>
     </div>
   </main>
+  
+  
+  <div id="gh-outline" class="gh-outline">
+    <div class="gh-outline-header">
+      <div class="gh-outline-title-container">
+        <h2 class="gh-outline-title">Contents</h2>
+        <button id="close-outline" class="gh-outline-close">
+          <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-x">
+            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="gh-outline-content">
+      <nav id="gh-outline-content" class="gh-outline-content-nav">
+        
+      </nav>
+    </div>
+  </div>
 </div>
-<script type="application/javascript" src='https://qingz11.github.io/js/toc.js'></script>
+
 <link rel="stylesheet" href='https://qingz11.github.io/css/toc.css' />
+<script type="application/javascript" src='https://qingz11.github.io/js/toc.js'></script>
+<script src="https://qingz11.github.io/js/fix-toc.js"></script>
 
 
 <div id="gitalk-container" class="gitalk-container"></div>
