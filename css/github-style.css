@@ -215,12 +215,12 @@ body {
   color: initial !important;
 }
 
-/* 暗黑模式下章节标题颜色 */
-[data-color-mode=dark] .markdown-body h1,
-[data-color-mode=dark] .markdown-body h2,
-[data-color-mode=dark] .markdown-body h3,
-[data-color-mode=dark] .markdown-body h4,
-[data-color-mode=dark] .markdown-body h5,
-[data-color-mode=dark] .markdown-body h6 {
+/* 暗黑模式下文章页面的章节标题颜色 */
+[data-color-mode=dark] .repository-content .markdown-body h1,
+[data-color-mode=dark] .repository-content .markdown-body h2,
+[data-color-mode=dark] .repository-content .markdown-body h3,
+[data-color-mode=dark] .repository-content .markdown-body h4,
+[data-color-mode=dark] .repository-content .markdown-body h5,
+[data-color-mode=dark] .repository-content .markdown-body h6 {
   color: var(--color-heading);
 }
