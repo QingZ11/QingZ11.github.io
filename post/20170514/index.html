@@ -215,8 +215,8 @@
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><h2 id="20170514-2354">2017.05.14 23:54</h2>
 <p>不知道算不算成功执行了 scp 命令，命令如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sf-mba:~ sf$ scp ~/Desktop/steam/nfs.html evaz_steam@ssh.phx.nearlyfreespeech.net:/home/public
-</span></span><span style="display:flex;"><span>evaz_steam@ssh.phx.nearlyfreespeech.net<span style="color:#960050;background-color:#1e0010">&#39;</span>s password: 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sf-mba:~ sf$ scp ~/Desktop/steam/nfs.html evaz_steam@ssh.phx.nearlyfreespeech.net:/home/public
+</span></span><span class="line"><span class="cl">evaz_steam@ssh.phx.nearlyfreespeech.net<span class="err">&#39;</span>s password: 
 </span></span></code></pre></div><p>返回结果如下：</p>
 <pre tabindex="0"><code>nfs.html                                      100% 5837    11.7KB/s   00:00
 </code></pre><p>说起来，自己也挺蠢钝的，不过这几天已经习惯了自己的蠢钝了，麻木不仁，先是 SSH 连上了服务器，然后执行了 scp 命令，发现文件不存在，然后求助了 传奇老师，传奇老师给的解决方案是在 Desktop 前面加上浪荡的波浪线，表示 路径，第一次是中文字符下的波浪线，卒；</p>
@@ -256,84 +256,84 @@ Orz，这意味着我得去问 02，哎
 <h2 id="20170514-0211">2017.05.14 02:11</h2>
 <p>写下上面那段数字</p>
 <h2 id="之前的-html">之前的 html</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 23:54&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>不知道算不算成功执行了 scp 命令，命令如下：
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>sf-mba:~ sf$ scp ~/Desktop/steam/nfs.html evaz_steam@ssh.phx.nearlyfreespeech.net:/home/public
-</span></span><span style="display:flex;"><span>evaz_steam@ssh.phx.nearlyfreespeech.net&#39;s password: 
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>返回结果如下：
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color:#1E90FF&#34;</span>&gt;nfs.html                                      100% 5837    11.7KB/s   00:00&lt;/<span style="color:#f92672">p</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>说起来，自己也挺蠢钝的，不过这几天已经习惯了自己的蠢钝了，麻木不仁，先是 SSH 连上了服务器，然后执行了 scp 命令，发现文件不存在，然后求助了 传奇老师，传奇老师给的解决方案是在 Desktop 前面加上浪荡的波浪线，表示 路径，第一次是中文字符下的波浪线，卒；
-</span></span><span style="display:flex;"><span>第二次是英文字符下的，依旧是文件不存在，后来我弄我仅剩的一些脑细胞思考了下，不应该在远程服务器的 public 目录下执行该命令，应该是在本地目录下，所以换了下方法，应该是成功了，因为出了读取数据的提醒
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>放上和传奇老师的聊天记录，纪念下吧，虽然我不知道我把文件复制到 public 里，我该怎么打开，把内容写入到 index.html 里，明天再研究吧
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://segmentfault.com/img/bVNUFv?w=484&amp;h=433&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Null&#34;</span> /&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 22:14&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>宅在家里的一天就要过去了，信誓旦旦地三份文稿又拖延了，阿西吧。聊天真的是很占用时间的事情，但是，仿佛又回到了高中时代，不知道怎么拒绝人家的对话申请，别人回一句就和强迫症犯了似的，一定要回一句回去，哪怕是个表情包，聊天一定要有个结束语，或是自己发了信息对方不回了，这个容易导致的一个结果是，对方是个和我一样秉性的人，就要卒了。
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>其实我一点都不喜欢和有些人聊天，但，偏偏，不回信息又不是我风格，真讨厌这种性格。
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>02 交代的后事还剩下 2 件，public key 是不打算弄了，scp 命令还没研究，反正更新了本地的这个页面，那就试试吧。反正折腾不坏什么东西，对了，咨询过传奇老师之后，在 02 特别嗤之以鼻的 GoDaddy 上买了一个域名，其实原意是想买个 evaz.me 的，但是被人买了，还是一个 App 的样子，看来是没希望了。其实自己的名字音译过来原本就是 Yevazn，但是已经用习惯了 Evaz 总是觉得 Evaz 才是对的读音 Orz，突然发现，VS Code 和 Excel 有点类似，有个记忆功能，当输入到特定词的时候，会自动匹配上文的某段话语，Interesting，话说，我应该和 传奇老师 他们学习，每天背个单词啥的，去研究 scp 去
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>暂定方案，先用 ssh 连上服务器，然后再用命令把本地的 网页 写入到 服务器，术语有可能不对，以后再回头来矫正吧
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 10:51&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>nano 有个问题，编辑的时候光标在最开始，然后早上起来的时候想在终端输入命令，发现毫无反应。刚想起来个事，既然是个编辑器，那么就应该支持直接写 html
-</span></span><span style="display:flex;"><span>的标签，试试看能不能插入图片好了
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://segmentfault.com/img/bVNUFu?w=493&amp;h=497&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Null&#34;</span> /&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>卧槽，成功了，那是不是意味这，我得在 VS code 里面把东西编辑好，才能拷过来呢，真是麻烦，麻烦
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 09:52&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>醒来翻了下胖友圈，今年在胖友圈给母上大人过生日的人少了，近乎没有，姑且认为他们都还没起床吧：）
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>nano，既然都是 Linux 的编辑器，那么不如试试 vi，结果，果然不适合我这个新手都不如的菜鸟，卒，好歹记住了：q！是退出，也挺好的
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>给老妈打了个电话，貌似今年要去参加 2 次葬礼了，希望还是延迟点，明年或是后年，大大大后年吧。虽然亲人去世我是无感，但人走了就有一个不好，就是再也不能见面，即使再去他安眠的地方去打扰，也是不能看到他的面貌，毕竟每次都开箱见面成本太大…
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 03:11&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>突然想起来今天，不对，昨天上后台的时候发现竟然有查看 SF 支付提现的权限饿了，看了下讲师们的交易，心疼他们
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>换行失败，为什么要写这个时间呢，张彦峰的生日是 03.11，虽然不会再给他过生日了，但是还是记住了，有时还蛮神奇的，明明就是一个普通的数字，只要和认识的人的生日搭在一起，或是什么有意思的日子，总觉得这个数字倍感亲切，就像 SF 的室号室 B311 一样，就像每天早上看见 07:11 会很开心一样，这应该是大学毕业之后，第一次那么迟睡觉了，诶，貌似还有撸剧迟睡过，想想，看的《犯罪心理》？还有啥，琅琊榜应该没有通宵撸过貌似玩游戏也没有超过 12 点过，哦对，还有失恋的时候，那段傻逼的过往啊，为什么不好好睡觉呀，那就这样吧，貌似不困了
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>= =流水账真的是能写很多，我得想法子从 02 旗下独立门户，这样我就能更开心地随便瞎写了，首先，我得研究下这个托管网站，貌似没有外援，但愿谷歌能一如既往的可靠，晚安，试试表情能不能打，😄 果然不能…刷新了下，虽然 nano 看不见表情，网页端可以啊，真好😊 
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>强行换行失败，明天研究下怎么换行好了，一坨文字，不能忍不能忍
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 03:02&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>强势换行失败，感觉和 nano 的命令无关，应该是页面设置有问题
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;Orz，这意味着我得去问 02，哎
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;小结下吧，过去一半的周末，学会了怎么配 DNS，知道了阿里和电信的备用 DNS，然后知道了 nano，傻瓜样的在 02 的指引下弄了一个不知道怎么出来的个人网站？姑且那么叫吧，其实本来是打算借这个时间，打发下等讲座转码成功的时间的，结果 4 个小时过去了，讲座还没有转码成功，估计又挂了，明天起来再找 70 吧，不过估计慧慧同学应该会比我早发现这个问题。
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>手动换行，和周海薇吐槽了下工作的事情，心情就自然好了，果然吐槽是最好的发泄方式lol
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>手动换行，暂时就这样吧，虽然页面显示的很难看，那就不看了，我安心看 nano 上显示的就好了，不知道这个编辑器会不会有字数限制，应该是个正无穷吧
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 02:47&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>刷新了下，貌似回车失败，所以编辑器里的回车和网站对应的换行符貌似不是一个，既然是 nano 编辑器，那就应该按照它的命令，先试试 -o
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">b</span>&gt;强势换行符&lt;/<span style="color:#f92672">b</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 02:41&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>翻看了 nearlyfreespeech 的 Q<span style="color:#960050;background-color:#1e0010">&amp;</span>A，查看无果，决定明早起再倒腾下，再次感谢 02，似乎应该大概可能能看见吧。不管了，反正记上一笔账，那就姑且算是 2 顿饭吧
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;2017.05.14 02:11&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>/&gt;&lt;<span style="color:#f92672">br</span>/&gt;
-</span></span><span style="display:flex;"><span>写下上面那段数字
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 23:54<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">不知道算不算成功执行了 scp 命令，命令如下：
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">sf-mba:~ sf$ scp ~/Desktop/steam/nfs.html evaz_steam@ssh.phx.nearlyfreespeech.net:/home/public
+</span></span><span class="line"><span class="cl">evaz_steam@ssh.phx.nearlyfreespeech.net&#39;s password: 
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">返回结果如下：
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color:#1E90FF&#34;</span><span class="p">&gt;</span>nfs.html                                      100% 5837    11.7KB/s   00:00<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">说起来，自己也挺蠢钝的，不过这几天已经习惯了自己的蠢钝了，麻木不仁，先是 SSH 连上了服务器，然后执行了 scp 命令，发现文件不存在，然后求助了 传奇老师，传奇老师给的解决方案是在 Desktop 前面加上浪荡的波浪线，表示 路径，第一次是中文字符下的波浪线，卒；
+</span></span><span class="line"><span class="cl">第二次是英文字符下的，依旧是文件不存在，后来我弄我仅剩的一些脑细胞思考了下，不应该在远程服务器的 public 目录下执行该命令，应该是在本地目录下，所以换了下方法，应该是成功了，因为出了读取数据的提醒
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">放上和传奇老师的聊天记录，纪念下吧，虽然我不知道我把文件复制到 public 里，我该怎么打开，把内容写入到 index.html 里，明天再研究吧
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://segmentfault.com/img/bVNUFv?w=484&amp;h=433&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;Null&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 22:14<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">宅在家里的一天就要过去了，信誓旦旦地三份文稿又拖延了，阿西吧。聊天真的是很占用时间的事情，但是，仿佛又回到了高中时代，不知道怎么拒绝人家的对话申请，别人回一句就和强迫症犯了似的，一定要回一句回去，哪怕是个表情包，聊天一定要有个结束语，或是自己发了信息对方不回了，这个容易导致的一个结果是，对方是个和我一样秉性的人，就要卒了。
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">其实我一点都不喜欢和有些人聊天，但，偏偏，不回信息又不是我风格，真讨厌这种性格。
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">02 交代的后事还剩下 2 件，public key 是不打算弄了，scp 命令还没研究，反正更新了本地的这个页面，那就试试吧。反正折腾不坏什么东西，对了，咨询过传奇老师之后，在 02 特别嗤之以鼻的 GoDaddy 上买了一个域名，其实原意是想买个 evaz.me 的，但是被人买了，还是一个 App 的样子，看来是没希望了。其实自己的名字音译过来原本就是 Yevazn，但是已经用习惯了 Evaz 总是觉得 Evaz 才是对的读音 Orz，突然发现，VS Code 和 Excel 有点类似，有个记忆功能，当输入到特定词的时候，会自动匹配上文的某段话语，Interesting，话说，我应该和 传奇老师 他们学习，每天背个单词啥的，去研究 scp 去
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">暂定方案，先用 ssh 连上服务器，然后再用命令把本地的 网页 写入到 服务器，术语有可能不对，以后再回头来矫正吧
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 10:51<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">nano 有个问题，编辑的时候光标在最开始，然后早上起来的时候想在终端输入命令，发现毫无反应。刚想起来个事，既然是个编辑器，那么就应该支持直接写 html
+</span></span><span class="line"><span class="cl">的标签，试试看能不能插入图片好了
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://segmentfault.com/img/bVNUFu?w=493&amp;h=497&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;Null&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">卧槽，成功了，那是不是意味这，我得在 VS code 里面把东西编辑好，才能拷过来呢，真是麻烦，麻烦
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 09:52<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">醒来翻了下胖友圈，今年在胖友圈给母上大人过生日的人少了，近乎没有，姑且认为他们都还没起床吧：）
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">nano，既然都是 Linux 的编辑器，那么不如试试 vi，结果，果然不适合我这个新手都不如的菜鸟，卒，好歹记住了：q！是退出，也挺好的
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">给老妈打了个电话，貌似今年要去参加 2 次葬礼了，希望还是延迟点，明年或是后年，大大大后年吧。虽然亲人去世我是无感，但人走了就有一个不好，就是再也不能见面，即使再去他安眠的地方去打扰，也是不能看到他的面貌，毕竟每次都开箱见面成本太大…
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 03:11<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">突然想起来今天，不对，昨天上后台的时候发现竟然有查看 SF 支付提现的权限饿了，看了下讲师们的交易，心疼他们
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">换行失败，为什么要写这个时间呢，张彦峰的生日是 03.11，虽然不会再给他过生日了，但是还是记住了，有时还蛮神奇的，明明就是一个普通的数字，只要和认识的人的生日搭在一起，或是什么有意思的日子，总觉得这个数字倍感亲切，就像 SF 的室号室 B311 一样，就像每天早上看见 07:11 会很开心一样，这应该是大学毕业之后，第一次那么迟睡觉了，诶，貌似还有撸剧迟睡过，想想，看的《犯罪心理》？还有啥，琅琊榜应该没有通宵撸过貌似玩游戏也没有超过 12 点过，哦对，还有失恋的时候，那段傻逼的过往啊，为什么不好好睡觉呀，那就这样吧，貌似不困了
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">= =流水账真的是能写很多，我得想法子从 02 旗下独立门户，这样我就能更开心地随便瞎写了，首先，我得研究下这个托管网站，貌似没有外援，但愿谷歌能一如既往的可靠，晚安，试试表情能不能打，😄 果然不能…刷新了下，虽然 nano 看不见表情，网页端可以啊，真好😊 
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">强行换行失败，明天研究下怎么换行好了，一坨文字，不能忍不能忍
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 03:02<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">强势换行失败，感觉和 nano 的命令无关，应该是页面设置有问题
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>Orz，这意味着我得去问 02，哎
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>小结下吧，过去一半的周末，学会了怎么配 DNS，知道了阿里和电信的备用 DNS，然后知道了 nano，傻瓜样的在 02 的指引下弄了一个不知道怎么出来的个人网站？姑且那么叫吧，其实本来是打算借这个时间，打发下等讲座转码成功的时间的，结果 4 个小时过去了，讲座还没有转码成功，估计又挂了，明天起来再找 70 吧，不过估计慧慧同学应该会比我早发现这个问题。
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">手动换行，和周海薇吐槽了下工作的事情，心情就自然好了，果然吐槽是最好的发泄方式lol
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">手动换行，暂时就这样吧，虽然页面显示的很难看，那就不看了，我安心看 nano 上显示的就好了，不知道这个编辑器会不会有字数限制，应该是个正无穷吧
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 02:47<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">刷新了下，貌似回车失败，所以编辑器里的回车和网站对应的换行符貌似不是一个，既然是 nano 编辑器，那就应该按照它的命令，先试试 -o
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>强势换行符<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 02:41<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">翻看了 nearlyfreespeech 的 Q<span class="err">&amp;</span>A，查看无果，决定明早起再倒腾下，再次感谢 02，似乎应该大概可能能看见吧。不管了，反正记上一笔账，那就姑且算是 2 顿饭吧
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>2017.05.14 02:11<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">写下上面那段数字
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span></code></pre></div></article>
               </div>
             </div>
