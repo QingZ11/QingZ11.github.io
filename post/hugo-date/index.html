@@ -253,10 +253,10 @@
 </li>
 </ol>
 <p>标题排查完之后，下面的字段是 date，hugo 的 post 格式如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">title: <span class="s2">&#34;hugo 文章添加失败的原因&#34;</span>
-</span></span><span class="line"><span class="cl">date: 2024-09-24
-</span></span><span class="line"><span class="cl">summary: <span class="s2">&#34;没想到二分法，又派上用场了呢。&#34;</span>
-</span></span><span class="line"><span class="cl">tags: <span class="o">[</span><span class="s1">&#39;日常记录&#39;</span>,<span class="s1">&#39;hugo&#39;</span><span class="o">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>title: <span style="color:#e6db74">&#34;hugo 文章添加失败的原因&#34;</span>
+</span></span><span style="display:flex;"><span>date: 2024-09-24
+</span></span><span style="display:flex;"><span>summary: <span style="color:#e6db74">&#34;没想到二分法，又派上用场了呢。&#34;</span>
+</span></span><span style="display:flex;"><span>tags: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;日常记录&#39;</span>,<span style="color:#e6db74">&#39;hugo&#39;</span><span style="color:#f92672">]</span>
 </span></span></code></pre></div><p>当我看到日期是，会有个想法是：难道不能写当天，毕竟现在是凌晨三点半。可能 hugo 读取的并非我本地时间，而是另外某个时区。瞬间，我把时间改成了前日，！！！！pages +1</p>
 <p>好吧，日期不能写当天，或者说是未来（具体 hugo 时间以哪个时区为准，就不查证了）。</p>
 <h2 id="时区后续">时区后续</h2>
