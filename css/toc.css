@@ -1,0 +1,326 @@
+/* GitHub-style outline sidebar */
+.gh-outline {
+  position: fixed;
+  /* 与post-header同高 */
+  top: 116px; /* 准确对齐post-header, 会被JavaScript调整 */
+  right: 16px; /* 与正文间距设置为16px */
+  width: 260px;
+  max-height: calc(100vh - 116px - 16px);
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  box-sizing: border-box;
+  z-index: 30;
+  overflow-y: auto;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  /* 默认可见 */
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.gh-outline:not(.visible) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(5px);
+}
+
+.gh-outline-header {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--color-border-muted);
+  background-color: var(--color-canvas-subtle);
+  border-radius: 6px 6px 0 0;
+}
+
+.gh-outline-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gh-outline-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg-default);
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.gh-outline-close {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--color-fg-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.gh-outline-close:hover {
+  background-color: var(--color-neutral-muted);
+  color: var(--color-fg-default);
+  opacity: 1;
+}
+
+.gh-outline-content {
+  padding: 12px 0;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.gh-outline-content-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.gh-outline-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.gh-outline-list li {
+  margin: 0;
+  padding: 0;
+  position: relative; /* 为伪元素定位准备 */
+}
+
+.gh-outline-list li a {
+  display: block;
+  padding: 4px 16px 4px 16px;
+  font-size: 14px !important; /* 所有目录项统一使用14px字号 */
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: #24292f; /* 使用默认文本颜色 --color-fg-default */
+  text-decoration: none;
+  white-space: normal; /* 修改：允许长标题自动换行 */
+  word-break: break-word; /* 添加：在必要时断词换行 */
+  overflow: visible; /* 修改：内容溢出可见 */
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.gh-outline-list li a:hover {
+  color: #0969da; /* 悬停时保持蓝色高亮 */
+  background-color: #f6f8fa;
+}
+
+.gh-outline-list li a.active {
+  background-color: #f6f8fa;
+  border-left-color: #0969da; /* 保持选中项的左边框为蓝色 */
+  color: #0969da; /* 当前激活项使用蓝色 */
+  font-weight: 600;
+}
+
+/* 优化暗黑模式下的悬停效果 */
+.theme-dark .gh-outline-list li a:hover {
+  background-color: rgba(56, 139, 253, 0.1);
+}
+
+/* Heading level indentation - 根据层级设置缩进 */
+/* 一级标题 - 纯文本样式，不带圆点 */
+.gh-outline-list li a.h1 { 
+  padding-left: 16px; /* 直接从左边开始，不需要为列表标记留空间 */
+  font-weight: 600;
+  position: relative;
+}
+
+/* 二级标题 - 一级列表样式（圆点） */
+.gh-outline-list li a.h2 { 
+  padding-left: 32px; /* 缩进给列表标记留空间 */
+  position: relative;
+}
+
+.gh-outline-list li a.h2::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 11px; /* 垂直居中对齐 */
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #24292f; /* 默认文本颜色 --color-fg-default */
+}
+
+/* 三级标题 - 二级列表样式（空心圆） */
+.gh-outline-list li a.h3 { 
+  padding-left: 48px; /* 比二级标题多缩进16px */
+  position: relative;
+}
+
+.gh-outline-list li a.h3::before {
+  content: "";
+  position: absolute;
+  left: 32px;
+  top: 11px; /* 垂直居中对齐 */
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid #24292f; /* 默认文本颜色 --color-fg-default */
+  background-color: transparent;
+}
+
+/* 四级及以上标题 - 三级列表样式（小方块） */
+.gh-outline-list li a.h4,
+.gh-outline-list li a.h5,
+.gh-outline-list li a.h6 { 
+  padding-left: 64px; /* 比三级标题多缩进16px */
+  position: relative;
+}
+
+.gh-outline-list li a.h4::before,
+.gh-outline-list li a.h5::before,
+.gh-outline-list li a.h6::before {
+  content: "";
+  position: absolute;
+  left: 48px;
+  top: 11px; /* 垂直居中对齐 */
+  width: 5px;
+  height: 5px;
+  background-color: #24292f; /* 默认文本颜色 --color-fg-default */
+  /* 方块形状，没有圆角 */
+}
+
+/* Dark mode styles */
+[data-color-mode=dark] .gh-outline {
+  background-color: #0d1117;
+  border-color: #30363d;
+}
+
+[data-color-mode=dark] .gh-outline-header {
+  background-color: #161b22;
+  border-bottom-color: #30363d;
+}
+
+[data-color-mode=dark] .gh-outline-title {
+  color: #c9d1d9;
+}
+
+[data-color-mode=dark] .gh-outline-close {
+  color: #8b949e;
+}
+
+[data-color-mode=dark] .gh-outline-close:hover {
+  background-color: #30363d;
+  color: #c9d1d9;
+}
+
+[data-color-mode=dark] .gh-outline-list li a {
+  color: #58a6ff;
+}
+
+[data-color-mode=dark] .gh-outline-list li a:hover {
+  color: #58a6ff;
+  background-color: rgba(56, 139, 253, 0.1);
+}
+
+[data-color-mode=dark] .gh-outline-list li a.active {
+  background-color: rgba(56, 139, 253, 0.1);
+  border-left-color: #58a6ff;
+  color: #58a6ff;
+}
+
+/* 暗黑模式下的列表标志颜色 */
+/* 移除一级标题的圆点样式，一级标题不再有列表标记 */
+
+[data-color-mode=dark] .gh-outline-list li a.h2::before {
+  background-color: #58a6ff; /* 暗黑模式中的GitHub蓝色 */
+}
+
+[data-color-mode=dark] .gh-outline-list li a.h3::before {
+  border-color: #58a6ff;
+}
+
+[data-color-mode=dark] .gh-outline-list li a.h4::before,
+[data-color-mode=dark] .gh-outline-list li a.h5::before,
+[data-color-mode=dark] .gh-outline-list li a.h6::before {
+  background-color: #58a6ff;
+}
+
+/* TOC按钮样式 */
+#toc-toggle {
+  cursor: pointer;
+  transition: color 0.2s ease;
+  background-color: transparent !important; /* 修改：确保按钮始终没有背景色 */
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+#toc-toggle:hover, #toc-toggle:focus, #toc-toggle:active, #toc-toggle.selected {
+  color: #0969da;
+  background-color: transparent !important; /* 修改：无论何种状态都没有背景色 */
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.theme-dark #toc-toggle {
+  color: #c9d1d9;
+}
+
+.theme-dark #toc-toggle:hover, .theme-dark #toc-toggle:focus, 
+.theme-dark #toc-toggle:active, .theme-dark #toc-toggle.selected {
+  color: #58a6ff;
+  background-color: transparent !important; /* 修改：确保在暗黑模式下无论何种状态都没有背景色 */
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* For legacy TOC button dropdown */
+.toc-item {
+  display: block;
+  font-size: 14px;
+  padding: 6px 8px;
+  color: #24292f;
+  text-decoration: none;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toc-item:hover {
+  color: #0969da;
+  background-color: rgba(208, 215, 222, 0.32);
+  text-decoration: none;
+}
+
+/* Responsive styles */
+@media (max-width: 1280px) {
+  .gh-outline {
+    transform: translateX(100%);
+  }
+  
+  .gh-outline.visible {
+    transform: translateX(0);
+  }
+  
+  body.has-outline .container-lg {
+    max-width: 100% !important;
+  }
+}
+/* 覆盖btn-octicon样式，确保没有背景色 */
+.btn.btn-octicon {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn.btn-octicon:hover, 
+.btn.btn-octicon:focus, 
+.btn.btn-octicon:active, 
+.btn.btn-octicon.selected {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
