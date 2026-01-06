@@ -1,0 +1,5 @@
+# 忽略当前目录下的 .DS_Store
+.DS_Store
+
+# 忽略所有子目录下的 .DS_Store (推荐)
+**/.DS_Store
