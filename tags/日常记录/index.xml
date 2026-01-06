@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>日常记录 on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/</link>
+    <description>Recent content in 日常记录 on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 04 Mar 2025 17:28:54 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>偶遇那片星空</title>
+      <link>https://qingz11.github.io/post/coffee-please-03/</link>
+      <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/coffee-please-03/</guid>
+      <description>咖啡吐出的气泡，聚集而成的星空。</description>
+    </item>
+    <item>
+      <title>优化了一次咖啡泡法</title>
+      <link>https://qingz11.github.io/post/coffee-please-02/</link>
+      <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/coffee-please-02/</guid>
+      <description>在喝了人生第一次他人冲泡的手冲咖啡之后。</description>
+    </item>
+    <item>
+      <title>hugo 文章添加失败的原因</title>
+      <link>https://qingz11.github.io/post/hugo-date/</link>
+      <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/hugo-date/</guid>
+      <description>没想到二分法，又派上用场了呢。</description>
+    </item>
+    <item>
+      <title>镜头测试·原来这三支镜头是这样的</title>
+      <link>https://qingz11.github.io/post/three-lenses/</link>
+      <pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/three-lenses/</guid>
+      <description>终于有机会，用不同镜头拍下相同风景了。</description>
+    </item>
+    <item>
+      <title>近两周的咖啡合集</title>
+      <link>https://qingz11.github.io/post/coffee-please-01/</link>
+      <pubDate>Tue, 17 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/coffee-please-01/</guid>
+      <description>虽然日记补不了，但是照片可以。</description>
+    </item>
+    <item>
+      <title>更新博客主题 08.08</title>
+      <link>https://qingz11.github.io/post/hugo-url/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/hugo-url/</guid>
+      <description>Hugo 远比我想的复杂，我远比我想的更不喜欢钻研。</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thoughts on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/tags/thoughts/</link>
+    <description>Recent content in Thoughts on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 06 Jan 2026 17:24:46 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The long season of langdev</title>
+      <link>https://qingz11.github.io/blogs/2025-12-28-long-season/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/blogs/2025-12-28-long-season/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

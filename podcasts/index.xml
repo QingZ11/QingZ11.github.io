@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Podcasts on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/podcasts/</link>
+    <description>Recent content in Podcasts on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <atom:link href="https://qingz11.github.io/podcasts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>中国如何跳出贫穷陷阱</title>
+      <link>https://qingz11.github.io/podcasts/2025-12-15-poor/</link>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/podcasts/2025-12-15-poor/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>古文的力量</title>
+      <link>https://qingz11.github.io/podcasts/2025-12-09-ancient-chinese/</link>
+      <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/podcasts/2025-12-09-ancient-chinese/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

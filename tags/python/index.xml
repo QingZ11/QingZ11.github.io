@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/tags/python/</link>
+    <description>Recent content in Python on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 06 Jan 2026 17:00:48 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>友好的 Python：从其他语言移植</title>
+      <link>https://qingz11.github.io/blogs/2025-12-30-friendly-python-port/</link>
+      <pubDate>Tue, 30 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/blogs/2025-12-30-friendly-python-port/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

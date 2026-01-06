@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>English on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/tags/english/</link>
+    <description>Recent content in English on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 06 Jan 2026 17:24:46 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/english/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The long season of langdev</title>
+      <link>https://qingz11.github.io/blogs/2025-12-28-long-season/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/blogs/2025-12-28-long-season/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Case Study: Maintaining the World’s Fastest Content Delivery Network at Netflix on FreeBSD</title>
+      <link>https://qingz11.github.io/blogs/2025-12-10-case-study/</link>
+      <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/blogs/2025-12-10-case-study/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,18 @@
+/* 自动添加到暗黑模式的媒体查询支持 */
+@media (prefers-color-scheme: dark) {
+  /* 移除一级标题的圆点样式，一级标题不再有列表标记 */
+
+  [data-color-mode=auto] .gh-outline-list li a.h2::before {
+    background-color: #58a6ff;
+  }
+
+  [data-color-mode=auto] .gh-outline-list li a.h3::before {
+    border-color: #58a6ff;
+  }
+
+  [data-color-mode=auto] .gh-outline-list li a.h4::before,
+  [data-color-mode=auto] .gh-outline-list li a.h5::before,
+  [data-color-mode=auto] .gh-outline-list li a.h6::before {
+    background-color: #58a6ff;
+  }
+}
