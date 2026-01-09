@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 09 Jan 2026 11:17:50 &#43;0800"
+                  Modified <relative-time datetime="Fri, 09 Jan 2026 12:02:56 &#43;0800"
                     class="no-wrap">
-                    Fri, 09 Jan 2026 11:17:50 &#43;0800</relative-time>
+                    Fri, 09 Jan 2026 12:02:56 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -201,7 +201,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </button>
-                    <span class="ml-2">12567 Words</span>
+                    <span class="ml-2">13279 Words</span>
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
@@ -351,6 +351,45 @@
 </ol>
 <p>总结与建议
 你并不适合在强光环境下进行“白底黑字”的阅读，你的大脑和眼睛明显更喜欢低光刺激。</p>
+<h3 id="终端指令的约定">终端指令的约定</h3>
+<blockquote>
+<p>描述：读 <a href="https://how-terminals-work.vercel.app/">https://how-terminals-work.vercel.app/</a>，好奇既然起始符是 <code>^[</code>，终止符是 <code>m</code>，那为什不后面直接跟着指令编号，31，1 之类的，还要继续用 <code>[</code> 作为指令的开始呢？</p></blockquote>
+<p>Gemini ⬇️</p>
+<p>简单来说，<code>^[</code> (ESC) 只是一个“总开关”，而后面的 <code>[</code> 是一个“子分类”。</p>
+<ol>
+<li>ESC (<code>^[</code>)：仅仅是“举手”
+在 ASCII 标准里，ESC (Escape) 的含义非常单纯，它只是告诉终端：“注意！后面紧跟着的一个字符不是普通文字，而是一个特殊指令。”</li>
+</ol>
+<p>但是，特殊指令有很多种！</p>
+<ul>
+<li>有的指令很简单，不需要参数（比如：清屏）。</li>
+<li>有的指令很复杂，需要带很多参数（比如：把光标移动到第5行第10列，或者变成红色）。</li>
+</ul>
+<ol start="2">
+<li>第二个字符决定了“去哪个部门”
+因为指令太杂了，ANSI 标准规定，ESC 后面紧跟的那个字符，决定了接下来的指令属于哪一类。</li>
+</ol>
+<p>你可以把 ESC 想象成你在对终端喊“喂！”，然后第二个字符决定了你接下来的动作：</p>
+<ul>
+<li><code>[</code>(左中括号)：这叫做 CSI (Control Sequence Introducer)。
+<ul>
+<li>这是最常用的“部门”。凡是需要带参数的指令（比如颜色编号 31，或者坐标 5;10），全部归这个部门管。</li>
+<li>所以，颜色、光标移动、清除行，都是 <code>^[[</code> 开头。</li>
+</ul>
+</li>
+<li><code>(</code>(左小括号)：这是“字符集”部门。
+<ul>
+<li>比如 <code>^[(0</code> 是用来切换到特殊图形字符集的。</li>
+</ul>
+</li>
+<li><code>]</code>(右中括号)：这是“操作系统命令”部门 (OSC)。
+<ul>
+<li>比如用来修改终端窗口顶部的标题文字。</li>
+</ul>
+</li>
+</ul>
+<p>直接跟数字或字母：有些古老的终端（如 VT52）不需要 <code>[</code>，直接 ESC A 就是光标上移。但在现代标准（ANSI/VT100）里，为了防止冲突，把大部分功能都收纳到了 <code>[</code> 里面。</p>
+<p><strong>有趣的小知识</strong>： 你键盘上的方向键（上、下、左、右），其实发送给电脑的也是这套东西！ 当你按“上箭头”时，键盘其实悄悄发送了 <code>^[[A</code> ；按“下箭头”是 <code>^[[B</code>。</p>
 <h2 id="说说空间">说说空间</h2>
 <p>QQ 空间之前有个说说，我也想说一说三言两语：</p>
 <ul>
