@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>随想 on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/tags/%E9%9A%8F%E6%83%B3/</link>
+    <description>Recent content in 随想 on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 13 Jan 2026 13:01:16 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/%E9%9A%8F%E6%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>右转，请注意</title>
+      <link>https://qingz11.github.io/post/turn-right/</link>
+      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/post/turn-right/</guid>
+      <description>记一次外出前后的随想。</description>
+    </item>
+  </channel>
+</rss>
