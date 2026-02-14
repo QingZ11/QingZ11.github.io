@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on 喷射战士训练营</title>
+    <link>https://qingz11.github.io/tags/devops/</link>
+    <description>Recent content in Devops on 喷射战士训练营</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 13 Feb 2026 17:20:19 +0800</lastBuildDate>
+    <atom:link href="https://qingz11.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>So You Want to Build Your Own Datacenter</title>
+      <link>https://qingz11.github.io/blogs/2026-02-13-2027/</link>
+      <pubDate>Fri, 13 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://qingz11.github.io/blogs/2026-02-13-2027/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
