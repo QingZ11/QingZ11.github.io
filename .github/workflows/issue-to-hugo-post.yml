@@ -1,0 +1,101 @@
+name: Issue to Hugo post
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+      - labeled
+      - unlabeled
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: issue-to-hugo-post-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+env:
+  HUGO_SOURCE_REF: hugo-source
+  HUGO_PAGES_REF: master
+  HUGO_SECTION: post
+  HUGO_VERSION: 0.148.2
+
+jobs:
+  publish:
+    if: ${{ github.event.issue && !github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HUGO_PAGES_REF }}
+          path: site
+          fetch-depth: 0
+
+      - name: Checkout Hugo source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HUGO_SOURCE_REF }}
+          path: source
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Convert issue to Markdown
+        run: >
+          python3 site/.github/scripts/issue_to_hugo_post.py
+          "$GITHUB_EVENT_PATH"
+          "source/content/${HUGO_SECTION}"
+
+      - name: Commit Hugo source changes
+        working-directory: source
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No source changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "content/${HUGO_SECTION}/issue-${{ github.event.issue.number }}.md"
+          git commit -m "Update post from issue #${{ github.event.issue.number }}"
+          git push origin HEAD:${HUGO_SOURCE_REF}
+
+      - name: Build Hugo site
+        run: hugo --source source --destination "$RUNNER_TEMP/hugo-site"
+
+      - name: Sync generated site
+        run: |
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitignore' \
+            --exclude='.gitmodules' \
+            --exclude='CNAME' \
+            --exclude='myBlog/' \
+            --exclude='myBlogCode/' \
+            "$RUNNER_TEMP/hugo-site/" \
+            site/
+
+      - name: Commit generated site
+        working-directory: site
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No generated site changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish issue #${{ github.event.issue.number }}"
+          git push origin HEAD:${HUGO_PAGES_REF}
