@@ -70,6 +70,13 @@ jobs:
           git commit -m "Update post from issue #${{ github.event.issue.number }}"
           git push origin HEAD:${HUGO_SOURCE_REF}
 
+      - name: Reuse published images for Hugo build
+        run: |
+          mkdir -p source/static
+          if [ -d site/images ]; then
+            rsync -a site/images/ source/static/images/
+          fi
+
       - name: Build Hugo site
         run: hugo --source source --destination "$RUNNER_TEMP/hugo-site"
 
