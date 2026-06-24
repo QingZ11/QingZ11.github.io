@@ -1,0 +1,115 @@
+{{ $blogs := where .Site.RegularPages "Section" "blogs" }}
+{{ $books := where .Site.RegularPages "Section" "books" }}
+{{ $watches := where .Site.RegularPages "Section" "watches" }}
+{{ $podcasts := where .Site.RegularPages "Section" "podcasts" }}
+
+<!-- Sort by date descending -->
+{{ $blogs = sort $blogs ".Date" "desc" }}
+{{ $books = sort $books ".Date" "desc" }}
+{{ $watches = sort $watches ".Date" "desc" }}
+{{ $podcasts = sort $podcasts ".Date" "desc" }}
+
+<!-- 默认混合视图 (All) -->
+<div class="inputs-view" id="view-all">
+  <h2 class="inputs-section-title">Blogs</h2>
+  {{ partial "inputs/blogs-list.html" (dict "blogs" (first 4 $blogs)) }}
+  
+  <h2 class="inputs-section-title mt-5">Books</h2>
+  {{ partial "inputs/cards-grid.html" (dict "items" (first 6 $books) "type" "books") }}
+  
+  <h2 class="inputs-section-title mt-5">Watches</h2>
+  {{ partial "inputs/cards-grid.html" (dict "items" (first 6 $watches) "type" "watches") }}
+  
+  <h2 class="inputs-section-title mt-5">Podcasts</h2>
+  {{ partial "inputs/cards-grid.html" (dict "items" (first 6 $podcasts) "type" "podcasts") }}
+</div>
+
+<!-- Blogs 视图 -->
+<div class="inputs-view d-none" id="view-blogs">
+  {{ partial "inputs/year-grouped.html" (dict "items" $blogs "type" "blogs") }}
+</div>
+
+<!-- Books 视图 -->
+<div class="inputs-view d-none" id="view-books">
+  {{ partial "inputs/year-grouped.html" (dict "items" $books "type" "books") }}
+</div>
+
+<!-- Watches 视图 -->
+<div class="inputs-view d-none" id="view-watches">
+  {{ partial "inputs/year-grouped.html" (dict "items" $watches "type" "watches") }}
+</div>
+
+<!-- Podcasts 视图 -->
+<div class="inputs-view d-none" id="view-podcasts">
+  {{ partial "inputs/year-grouped.html" (dict "items" $podcasts "type" "podcasts") }}
+</div>
+
+<style>
+.inputs-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const navItems = document.querySelectorAll('.inputs-nav-item');
+  const views = document.querySelectorAll('.inputs-view');
+  
+  // 更新导航状态
+  function updateNavState(activeCategory) {
+    navItems.forEach(item => {
+      const category = item.dataset.category;
+      if (category === activeCategory) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+  
+  // 显示指定视图
+  function showView(viewId, category) {
+    views.forEach(view => view.classList.add('d-none'));
+    const targetView = document.getElementById(viewId);
+    if (targetView) {
+      targetView.classList.remove('d-none');
+    }
+    updateNavState(category);
+  }
+  
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const category = this.dataset.category;
+      const currentView = document.querySelector('.inputs-view:not(.d-none)');
+      
+      // 如果点击当前激活的分类，返回 all 视图
+      if (this.classList.contains('active')) {
+        showView('view-all', null);
+        window.location.hash = '';
+      } else {
+        // 切换到指定分类视图
+        showView('view-' + category, category);
+        window.location.hash = category;
+      }
+    });
+  });
+  
+  // 处理页面加载时的 hash
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1);
+    if (hash && ['blogs', 'books', 'watches', 'podcasts'].includes(hash)) {
+      showView('view-' + hash, hash);
+    }
+  }
+});
+</script>

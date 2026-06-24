@@ -1,0 +1,12 @@
+{{ if (and (not .IsHome) (eq .Type "post")) }}
+<div class="gh-outline">
+  <div class="gh-outline-header">
+    <h2 class="gh-outline-title">Contents</h2>
+  </div>
+  <div class="gh-outline-content">
+    <nav id="outline-content" class="outline-content">
+      <!-- JavaScript will populate this area -->
+    </nav>
+  </div>
+</div>
+{{ end }}

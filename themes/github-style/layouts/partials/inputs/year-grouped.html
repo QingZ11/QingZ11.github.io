@@ -1,0 +1,99 @@
+{{ $items := .items }}
+{{ $type := .type }}
+
+{{ if not $items }}
+<div class="empty-state">
+  <svg class="octicon" viewBox="0 0 24 24" width="48" height="48">
+    <path d="M11.75 2.5a.75.75 0 0 1 .75.75V11h7.75a.75.75 0 0 1 0 1.5H12.5v7.75a.75.75 0 0 1-1.5 0V12.5H3.25a.75.75 0 0 1 0-1.5H11V3.25a.75.75 0 0 1 .75-.75Z"></path>
+  </svg>
+  <p>No items yet</p>
+</div>
+{{ else }}
+
+{{/* Group items by year */}}
+{{ $itemsByYear := dict }}
+{{ range $items }}
+  {{ $year := .Date.Format "2006" }}
+  {{ if not (index $itemsByYear $year) }}
+    {{ $itemsByYear = merge $itemsByYear (dict $year (slice .)) }}
+  {{ else }}
+    {{ $yearItems := index $itemsByYear $year }}
+    {{ $yearItems = $yearItems | append . }}
+    {{ $itemsByYear = merge $itemsByYear (dict $year $yearItems) }}
+  {{ end }}
+{{ end }}
+
+{{/* Sort years in descending order and display */}}
+{{ $years := slice }}
+{{ range $year, $yearItems := $itemsByYear }}
+  {{ $years = $years | append $year }}
+{{ end }}
+{{ $years = sort $years "value" "desc" }}
+
+{{ range $years }}
+  {{ $year := . }}
+  {{ $yearItems := index $itemsByYear $year }}
+  {{/* Sort items within year by date descending */}}
+  {{ $yearItems = sort $yearItems ".Date" "desc" }}
+  
+  <div class="year-group">
+    <h3 class="year-title">
+      {{ $year }}
+      <span class="year-count">{{ len $yearItems }} {{ if eq $type "blogs" }}blogs{{ else if eq $type "books" }}books{{ else if eq $type "watches" }}watches{{ else }}podcasts{{ end }}</span>
+    </h3>
+    
+    {{ if eq $type "blogs" }}
+      {{ partial "inputs/blogs-list.html" (dict "blogs" $yearItems) }}
+    {{ else }}
+      {{ partial "inputs/cards-grid.html" (dict "items" $yearItems "type" $type) }}
+    {{ end }}
+  </div>
+{{ end }}
+
+{{ end }}
+
+<style>
+.year-group {
+  margin-bottom: 48px;
+}
+
+.year-group:last-child {
+  margin-bottom: 0;
+}
+
+.year-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-border-default);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.year-count {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-fg-muted);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: var(--color-fg-muted);
+}
+
+.empty-state .octicon {
+  opacity: 0.3;
+  margin-bottom: 16px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  margin: 0;
+}
+</style>

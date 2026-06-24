@@ -1,0 +1,13 @@
+{{ define "content" }}
+{{ partial "menus.html" . }}
+<div class="container-xl px-3 px-md-4 px-lg-5 my-4">
+  <div class="gutter-condensed gutter-lg flex-column flex-md-row d-flex">
+    <div class="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0">
+      {{ partial "inputs/sidebar.html" . }}
+    </div>
+    <div class="flex-shrink-0 col-12 col-md-9 mb-4 mb-md-0">
+      {{ partial "inputs/content.html" . }}
+    </div>
+  </div>
+</div>
+{{ end }}

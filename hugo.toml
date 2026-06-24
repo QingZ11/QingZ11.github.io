@@ -1,0 +1,60 @@
+baseURL = "https://qingz11.github.io/"
+BaseURL = "https://qingz11.github.io/"
+languageCode = "zh-cn"
+title = "喷射战士训练营"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  author = "Steam's Blog Init"
+  description = "几十亿分之一的普通人，努力成为鱿鱼战士中…"
+  github = "QingZ11"
+  twitter = "yevazn"
+  instagram = "evaz1879"
+  email = "evaz1879@gmail.com"
+  url = "https://QingZ11.github.io/"
+  keywords = "blog, google analytics"
+  rss = true
+  lastmod = true
+  userStatusEmoji = "🐱"
+  favicon = "/images/profile01.png"
+  avatar = "/images/avatar.jpg"
+  headerIcon = "/images/avatarY.jpg"
+  location = "China"
+  enableGitalk = true
+  popularPostCount = 4  # 控制首页显示的Popular posts文章数量
+
+
+  [params.gitalk]
+    clientID = "Ov23liSQNAUdsFkma8t1"
+    clientSecret = "af21793c069b3de15117b89281ea03d469147efc"
+    repo = "QingZ11.github.io"
+    owner = "QingZ11"
+    admin = "QingZ11"
+    id = "location.pathname"
+    labels = "comment"
+    perPage = 8
+    pagerDirection = "last"
+    createIssueManually = true
+    distractionFreeMode = false
+
+  [[params.links]]
+    title = "Link"
+    href = "https://github.com/QingZ11"
+#  [[params.links]]
+#    title = "Link2"
+#    href = "https://meik2333.com"
+#    icon = "https://meik2333.com/images/avatar.png"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+# 在文件的任何位置添加以下代码块
+[markup.goldmark.renderer]
+  # 设置为 true，允许在 Markdown 中渲染不安全的 HTML
+  unsafe = true
+
+[services]
+  [services.googleAnalytics]
+    ID = "G-60XM8Y3EGW"

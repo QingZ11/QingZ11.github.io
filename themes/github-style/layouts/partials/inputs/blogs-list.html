@@ -1,0 +1,124 @@
+{{ $blogs := .blogs }}
+
+{{/* Group blogs by date */}}
+{{ $blogsByDate := dict }}
+{{ range $blogs }}
+  {{ $date := .Date.Format "2006-01-02" }}
+  {{ if not (index $blogsByDate $date) }}
+    {{ $blogsByDate = merge $blogsByDate (dict $date (slice .)) }}
+  {{ else }}
+    {{ $dateBlogs := index $blogsByDate $date }}
+    {{ $dateBlogs = $dateBlogs | append . }}
+    {{ $blogsByDate = merge $blogsByDate (dict $date $dateBlogs) }}
+  {{ end }}
+{{ end }}
+
+{{/* Sort dates in descending order */}}
+{{ $dates := slice }}
+{{ range $date, $dateBlogs := $blogsByDate }}
+  {{ $dates = $dates | append $date }}
+{{ end }}
+{{ $dates = sort $dates "value" "desc" }}
+
+<ul class="blogs-list">
+  {{ range $dates }}
+    {{ $date := . }}
+    {{ $dateBlogs := index $blogsByDate $date }}
+    {{ if eq (len $dateBlogs) 1 }}
+      {{/* Single blog on this date - display normally */}}
+      {{ $blog := index $dateBlogs 0 }}
+      <li class="blog-item">
+        <span class="blog-date">{{ $date }}</span>
+        <a href="{{ $blog.Params.external_url }}" target="_blank" rel="noopener noreferrer" class="blog-title">
+          {{ $blog.Title }}
+        </a>
+        {{ if $blog.Params.tags }}
+        {{ range $blog.Params.tags }}
+        <span class="blog-tag">{{ . }}</span>
+        {{ end }}
+        {{ end }}
+      </li>
+    {{ else }}
+      {{/* Multiple blogs on this date - group them */}}
+      <li class="blog-date-group">
+        <span class="blog-date">{{ $date }}</span>
+        <ul class="blog-sublist">
+          {{ range $dateBlogs }}
+          <li class="blog-subitem">
+            <a href="{{ .Params.external_url }}" target="_blank" rel="noopener noreferrer" class="blog-title">
+              {{ .Title }}
+            </a>
+            {{ if .Params.tags }}
+            {{ range .Params.tags }}
+            <span class="blog-tag">{{ . }}</span>
+            {{ end }}
+            {{ end }}
+          </li>
+          {{ end }}
+        </ul>
+      </li>
+    {{ end }}
+  {{ end }}
+</ul>
+
+<style>
+.blogs-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.blog-item {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.blog-date-group {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  list-style: disc;
+}
+
+.blog-date {
+  color: var(--color-fg-muted);
+  font-size: 14px;
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.blog-sublist {
+  list-style: circle;
+  padding-left: 20px;
+  margin: 8px 0 0 0;
+}
+
+.blog-subitem {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.blog-title {
+  color: var(--color-fg-default);
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.blog-title:hover {
+  color: var(--color-accent-fg);
+  text-decoration: underline;
+}
+
+.blog-tag {
+  display: inline-block;
+  padding: 2px 7px;
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 2em;
+  color: var(--color-fg-default);
+  background-color: var(--color-accent-subtle);
+  border: 1px solid var(--color-border-default);
+}
+</style>

@@ -1,0 +1,136 @@
+{{ $blogs := where .Site.RegularPages "Section" "blogs" }}
+{{ $books := where .Site.RegularPages "Section" "books" }}
+{{ $watches := where .Site.RegularPages "Section" "watches" }}
+{{ $podcasts := where .Site.RegularPages "Section" "podcasts" }}
+
+<nav class="inputs-nav">
+  <a href="#blogs" class="inputs-nav-item" data-category="blogs">
+    <svg class="octicon octicon-project-template nav-icon-unselected" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M1.5 1.75v1.562a.75.75 0 1 1-1.5 0V1.75C0 .784.784 0 1.75 0h1.562a.75.75 0 1 1 0 1.5H1.75a.25.25 0 0 0-.25.25ZM6.438 0h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5Zm6.25 0h1.562C15.217 0 16 .784 16 1.75v1.562a.75.75 0 1 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-1.562a.75.75 0 1 1 0-1.5ZM1.5 6.438v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm14.5 0v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm-14.5 6.25v1.562c0 .138.112.25.25.25h1.562a.75.75 0 1 1 0 1.5H1.75A1.75 1.75 0 0 1 0 14.25v-1.562a.75.75 0 1 1 1.5 0Zm14.5 0v1.562A1.75 1.75 0 0 1 14.25 16h-1.562a.75.75 0 1 1 0-1.5h1.562a.25.25 0 0 0 .25-.25v-1.562a.75.75 0 1 1 1.5 0ZM6.438 14.5h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5ZM6.5 3v1A.75.75 0 0 1 5 4V3a.75.75 0 0 1 1.5 0ZM2.25 5.75A.75.75 0 0 1 3 5h1a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm4.5 0A.75.75 0 0 1 7.5 5h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75Zm-1 1a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1a.75.75 0 0 1 .75-.75Zm.75 4v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Zm3.5-5a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
+    </svg>
+    <svg class="octicon octicon-project nav-icon-selected d-none" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
+    </svg>
+    <span>Blogs</span>
+    <span class="counter">{{ lang.FormatNumber 0 (len $blogs) }}</span>
+  </a>
+  <a href="#books" class="inputs-nav-item" data-category="books">
+    <svg class="octicon octicon-project-template nav-icon-unselected" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M1.5 1.75v1.562a.75.75 0 1 1-1.5 0V1.75C0 .784.784 0 1.75 0h1.562a.75.75 0 1 1 0 1.5H1.75a.25.25 0 0 0-.25.25ZM6.438 0h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5Zm6.25 0h1.562C15.217 0 16 .784 16 1.75v1.562a.75.75 0 1 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-1.562a.75.75 0 1 1 0-1.5ZM1.5 6.438v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm14.5 0v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm-14.5 6.25v1.562c0 .138.112.25.25.25h1.562a.75.75 0 1 1 0 1.5H1.75A1.75 1.75 0 0 1 0 14.25v-1.562a.75.75 0 1 1 1.5 0Zm14.5 0v1.562A1.75 1.75 0 0 1 14.25 16h-1.562a.75.75 0 1 1 0-1.5h1.562a.25.25 0 0 0 .25-.25v-1.562a.75.75 0 1 1 1.5 0ZM6.438 14.5h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5ZM6.5 3v1A.75.75 0 0 1 5 4V3a.75.75 0 0 1 1.5 0ZM2.25 5.75A.75.75 0 0 1 3 5h1a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm4.5 0A.75.75 0 0 1 7.5 5h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75Zm-1 1a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1a.75.75 0 0 1 .75-.75Zm.75 4v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Zm3.5-5a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
+    </svg>
+    <svg class="octicon octicon-project nav-icon-selected d-none" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
+    </svg>
+    <span>Books</span>
+    <span class="counter">{{ lang.FormatNumber 0 (len $books) }}</span>
+  </a>
+  <a href="#watches" class="inputs-nav-item" data-category="watches">
+    <svg class="octicon octicon-project-template nav-icon-unselected" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M1.5 1.75v1.562a.75.75 0 1 1-1.5 0V1.75C0 .784.784 0 1.75 0h1.562a.75.75 0 1 1 0 1.5H1.75a.25.25 0 0 0-.25.25ZM6.438 0h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5Zm6.25 0h1.562C15.217 0 16 .784 16 1.75v1.562a.75.75 0 1 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-1.562a.75.75 0 1 1 0-1.5ZM1.5 6.438v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm14.5 0v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm-14.5 6.25v1.562c0 .138.112.25.25.25h1.562a.75.75 0 1 1 0 1.5H1.75A1.75 1.75 0 0 1 0 14.25v-1.562a.75.75 0 1 1 1.5 0Zm14.5 0v1.562A1.75 1.75 0 0 1 14.25 16h-1.562a.75.75 0 1 1 0-1.5h1.562a.25.25 0 0 0 .25-.25v-1.562a.75.75 0 1 1 1.5 0ZM6.438 14.5h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5ZM6.5 3v1A.75.75 0 0 1 5 4V3a.75.75 0 0 1 1.5 0ZM2.25 5.75A.75.75 0 0 1 3 5h1a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm4.5 0A.75.75 0 0 1 7.5 5h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75Zm-1 1a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1a.75.75 0 0 1 .75-.75Zm.75 4v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Zm3.5-5a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
+    </svg>
+    <svg class="octicon octicon-project nav-icon-selected d-none" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
+    </svg>
+    <span>Watches</span>
+    <span class="counter">{{ lang.FormatNumber 0 (len $watches) }}</span>
+  </a>
+  <a href="#podcasts" class="inputs-nav-item" data-category="podcasts">
+    <svg class="octicon octicon-project-template nav-icon-unselected" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M1.5 1.75v1.562a.75.75 0 1 1-1.5 0V1.75C0 .784.784 0 1.75 0h1.562a.75.75 0 1 1 0 1.5H1.75a.25.25 0 0 0-.25.25ZM6.438 0h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5Zm6.25 0h1.562C15.217 0 16 .784 16 1.75v1.562a.75.75 0 1 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-1.562a.75.75 0 1 1 0-1.5ZM1.5 6.438v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm14.5 0v3.124a.75.75 0 1 1-1.5 0V6.438a.75.75 0 1 1 1.5 0Zm-14.5 6.25v1.562c0 .138.112.25.25.25h1.562a.75.75 0 1 1 0 1.5H1.75A1.75 1.75 0 0 1 0 14.25v-1.562a.75.75 0 1 1 1.5 0Zm14.5 0v1.562A1.75 1.75 0 0 1 14.25 16h-1.562a.75.75 0 1 1 0-1.5h1.562a.25.25 0 0 0 .25-.25v-1.562a.75.75 0 1 1 1.5 0ZM6.438 14.5h3.124a.75.75 0 1 1 0 1.5H6.438a.75.75 0 1 1 0-1.5ZM6.5 3v1A.75.75 0 0 1 5 4V3a.75.75 0 0 1 1.5 0ZM2.25 5.75A.75.75 0 0 1 3 5h1a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm4.5 0A.75.75 0 0 1 7.5 5h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75Zm-1 1a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1a.75.75 0 0 1 .75-.75Zm.75 4v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Zm3.5-5a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
+    </svg>
+    <svg class="octicon octicon-project nav-icon-selected d-none" height="16" viewBox="0 0 16 16" version="1.1" width="16">
+      <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
+    </svg>
+    <span>Podcasts</span>
+    <span class="counter">{{ lang.FormatNumber 0 (len $podcasts) }}</span>
+  </a>
+</nav>
+
+<style>
+.inputs-nav {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputs-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--color-fg-default);
+  text-decoration: none;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  position: relative;
+}
+
+.inputs-nav-item::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  background-color: transparent;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+.inputs-nav-item.active::before {
+  background-color: #0969da;
+}
+
+.inputs-nav-item.active {
+  background-color: rgba(9, 105, 218, 0.1);
+}
+
+.inputs-nav-item:hover {
+  background-color: var(--color-neutral-muted);
+  text-decoration: none;
+  color: var(--color-fg-default);
+}
+
+.inputs-nav-item.active:hover {
+  background-color: rgba(9, 105, 218, 0.15);
+}
+
+.inputs-nav-item .octicon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.inputs-nav-item.active .nav-icon-unselected {
+  display: none;
+}
+
+.inputs-nav-item.active .nav-icon-selected {
+  display: block !important;
+}
+
+.inputs-nav-item span:first-of-type {
+  flex: 1;
+}
+
+.inputs-nav-item .counter {
+  flex: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-fg-muted);
+  background-color: var(--color-neutral-muted);
+  padding: 2px 8px;
+  border-radius: 20px;
+  min-width: 24px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.d-none {
+  display: none;
+}
+</style>
