@@ -81,6 +81,7 @@ jobs:
             --exclude='.gitignore' \
             --exclude='.gitmodules' \
             --exclude='CNAME' \
+            --exclude='images/' \
             --exclude='myBlog/' \
             --exclude='myBlogCode/' \
             "$RUNNER_TEMP/hugo-site/" \
