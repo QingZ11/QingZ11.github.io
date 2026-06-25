@@ -73,7 +73,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add content
           git commit -m "Update content from issue #${{ github.event.issue.number }}"
-          git push origin HEAD:${HUGO_SOURCE_REF}
+          git pull --rebase origin ${HUGO_SOURCE_REF}
+          git push origin HEAD:${HUGO_SOURCE_REF} || {
+            git fetch origin ${HUGO_SOURCE_REF}
+            git rebase origin/${HUGO_SOURCE_REF}
+            git push origin HEAD:${HUGO_SOURCE_REF}
+          }
 
       - name: Reuse published images for Hugo build
         run: |
@@ -118,4 +123,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Publish issue #${{ github.event.issue.number }}"
-          git push origin HEAD:${HUGO_PAGES_REF}
+          git pull --rebase origin ${HUGO_PAGES_REF}
+          git push origin HEAD:${HUGO_PAGES_REF} || {
+            git fetch origin ${HUGO_PAGES_REF}
+            git rebase origin/${HUGO_PAGES_REF}
+            git push origin HEAD:${HUGO_PAGES_REF}
+          }
