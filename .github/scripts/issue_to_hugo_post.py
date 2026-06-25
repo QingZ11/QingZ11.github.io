@@ -13,6 +13,7 @@ from typing import Any
 
 KIND_LABEL_PREFIX = "kind:"
 CONTROL_LABEL_PREFIXES = ("kind:", "status:", "type:")
+DELETE_LABEL = "status:deleted"
 
 KIND_CONFIG: dict[str, dict[str, Any]] = {
     "post": {
@@ -136,6 +137,10 @@ def content_tags(issue: dict[str, Any]) -> list[str]:
     return tags
 
 
+def is_deleted(issue: dict[str, Any]) -> bool:
+    return any(label.lower() == DELETE_LABEL for label in label_names(issue))
+
+
 def parse_metadata_value(raw: str) -> Any:
     value = raw.strip()
     if not value:
@@ -252,6 +257,14 @@ def main() -> None:
     issue = load_issue(event_path)
     kind = content_kind(issue)
     path = output_path(content_root, kind, int(issue["number"]))
+
+    if is_deleted(issue):
+        if path.exists():
+            path.unlink()
+            print(f"deleted {path}")
+        else:
+            print(f"already deleted {path}")
+        return
 
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(render_content(issue, kind), encoding="utf-8")

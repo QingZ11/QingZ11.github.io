@@ -26,6 +26,15 @@ def event(kind: str, number: int, title: str, body: str, labels: list[str]) -> d
     }
 
 
+def run_script(event_path: Path, content_root: Path) -> None:
+    subprocess.run(
+        ["python3", str(SCRIPT), str(event_path), str(content_root)],
+        check=True,
+        text=True,
+        capture_output=True,
+    )
+
+
 def run_case(kind: str, expected_path: str, expected_bits: list[str], body: str, labels: list[str] | None = None) -> None:
     labels = labels or []
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -37,12 +46,7 @@ def run_case(kind: str, expected_path: str, expected_bits: list[str], body: str,
             encoding="utf-8",
         )
 
-        subprocess.run(
-            ["python3", str(SCRIPT), str(event_path), str(content_root)],
-            check=True,
-            text=True,
-            capture_output=True,
-        )
+        run_script(event_path, content_root)
 
         output_path = content_root / expected_path
         assert output_path.exists(), f"missing output path: {output_path}"
@@ -106,6 +110,24 @@ def main() -> None:
         subprocess.run(["python3", str(NORMALIZER), str(content_root)], check=True, text=True, capture_output=True)
         output = post_path.read_text(encoding="utf-8")
         assert 'tags: ["日记"]' in output, output
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        event_path = root / "event.json"
+        content_root = root / "content"
+        event_path.write_text(
+            json.dumps(event("post", 200, "Deleted Post", "Body", ["日记"]), ensure_ascii=False),
+            encoding="utf-8",
+        )
+        run_script(event_path, content_root)
+        output_path = content_root / "post" / "issue-200.md"
+        assert output_path.exists(), "post should be created before deletion"
+
+        event_path.write_text(
+            json.dumps(event("post", 200, "Deleted Post", "Body", ["日记", "status:deleted"]), ensure_ascii=False),
+            encoding="utf-8",
+        )
+        run_script(event_path, content_root)
+        assert not output_path.exists(), "status:deleted should remove the generated post"
     print("issue_to_hugo_post.py smoke tests passed")
 
 

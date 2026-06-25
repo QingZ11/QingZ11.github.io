@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
   group: issue-to-hugo-post-${{ github.event.issue.number }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   HUGO_SOURCE_REF: hugo-source
@@ -24,7 +24,7 @@ env:
 
 jobs:
   publish:
-    if: ${{ github.event.issue && !github.event.issue.pull_request }}
+    if: ${{ github.event.issue && !github.event.issue.pull_request && contains(toJson(github.event.issue.labels), 'kind:') }}
     runs-on: ubuntu-latest
 
     steps:
