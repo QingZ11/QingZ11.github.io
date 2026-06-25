@@ -24,7 +24,16 @@ env:
 
 jobs:
   publish:
-    if: ${{ github.event.issue && !github.event.issue.pull_request && contains(toJson(github.event.issue.labels), 'kind:') }}
+    if: >-
+      ${{
+        github.event.issue &&
+        !github.event.issue.pull_request &&
+        contains(toJson(github.event.issue.labels), 'kind:') &&
+        (
+          contains(toJson(github.event.issue.labels), 'status:publish') ||
+          contains(toJson(github.event.issue.labels), 'status:deleted')
+        )
+      }}
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +42,11 @@ jobs:
         with:
           ref: ${{ env.HUGO_PAGES_REF }}
           path: site
-          fetch-depth: 0
+          fetch-depth: 1
+          sparse-checkout: |
+            /*
+            !/images/
+          sparse-checkout-cone-mode: false
 
       - name: Checkout Hugo source branch
         uses: actions/checkout@v4
@@ -79,20 +92,6 @@ jobs:
             git rebase origin/${HUGO_SOURCE_REF}
             git push origin HEAD:${HUGO_SOURCE_REF}
           }
-
-      - name: Reuse published images for Hugo build
-        run: |
-          mkdir -p source/static
-          if [ -d site/images ]; then
-            rsync -a site/images/ source/static/images/
-          fi
-
-      - name: Diagnose Hugo content
-        run: |
-          if [ -f source/content/post/202606-1.md ]; then
-            sed -n '1,30p' source/content/post/202606-1.md
-          fi
-          grep -RIn "tags:.*\/" source/content || true
 
       - name: Build Hugo site
         run: hugo --source source --destination "$RUNNER_TEMP/hugo-site"

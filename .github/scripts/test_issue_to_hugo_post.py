@@ -61,14 +61,14 @@ def main() -> None:
         "post/issue-104.md",
         ['title: "Post Title"', 'summary: "自定义摘要"', 'tags: ["日记"]', "正文内容"],
         "---\ndate: 2026-06-24\nsummary: 自定义摘要\n---\n\n正文内容",
-        ["日记"],
+        ["status:publish", "日记"],
     )
     run_case(
         "blog",
         "blogs/issue-104.md",
         ['external_url: "https://example.com/article"', 'tags: ["随感", "中文"]'],
         "---\nexternal_url: https://example.com/article\nsummary: 一句话备注\n---",
-        ["随感", "中文"],
+        ["status:publish", "随感", "中文"],
     )
     run_case(
         "book",
