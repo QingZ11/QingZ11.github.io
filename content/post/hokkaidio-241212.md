@@ -2,7 +2,7 @@
 title: "一个人的第一次旅行"
 date: 2025-01-07
 summary: "北海道真美，下次还去。"
-tags: ['霓虹']
+tags: ["霓虹"]
 ---
 
 ![image](https://github.com/user-attachments/assets/e82570df-14a4-467f-85db-c0c15bae0d25)

@@ -2,7 +2,7 @@
 title: "不负责任的 ai 工具小测"
 date: 2025-02-07
 summary: "喜欢 perplexity 的美感，但搞钱我选 deepseek。"
-tags: ['随便bb']
+tags: ["随便bb"]
 ---
 
 因为推上老刷到这些工具，但产生兴趣想去了解下当中某款产品的是 perplexity。想着要去用用这个产品，不如和其他的同类产品对比对比。于是，我用上了 deepseek。先前只通过 poe 去用 chatgpt 的我，会员到期之后用着免费 poe，今天用上了其他两款整合工具。

@@ -2,7 +2,7 @@
 title: "hugo 文章添加失败的原因"
 date: 2024-09-25
 summary: "没想到二分法，又派上用场了呢。"
-tags: ['日常记录','hugo']
+tags: ["日常记录", "hugo"]
 ---
 
 事情发生在刚更新博客的时候，执行完  `env HUGO_ENV="production" hugo -t github-style` 之后，Pages 的数量没有变化——正常流程应该是 `hugo server` 起来在本地看效果之后再推送到远端，但是我懒。

@@ -2,7 +2,7 @@
 title: "浴缸泡澡真的正"
 date: 2025-01-08
 summary: "试了五次，终于泡了一个痛快澡。"
-tags: ['随便bb']
+tags: ["随便bb"]
 ---
 
 ![image](https://github.com/user-attachments/assets/561e5ba0-9ed2-4b17-afb6-5d7009ea616a)

@@ -2,7 +2,7 @@
 title: "梳毛是一件能打呼噜的事情"
 date: 2024-09-26
 summary: "和葱白的关系变好了呢。"
-tags: ['葱白']
+tags: ["葱白"]
 ---
 
 ![image](https://github.com/user-attachments/assets/760543a3-230b-46ff-a729-ab5043d53c2d)

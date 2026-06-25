@@ -2,7 +2,7 @@
 title: "我的猫室友们·葱白篇 vol.01 08.09"
 date: 2024-08-09
 summary: "世界上有两只可爱的小猫咪：一只叫小黄，另外一只叫小白 🥰"
-tags: ['图集','葱白']
+tags: ["图集", "葱白"]
 ---
 
 ![11391723191765_ pic_hd](https://github.com/user-attachments/assets/b6278dde-d271-4873-9b76-d0784d78155d)

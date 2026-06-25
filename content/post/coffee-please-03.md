@@ -2,7 +2,7 @@
 title: "偶遇那片星空"
 date: 2025-03-02
 summary: "咖啡吐出的气泡，聚集而成的星空。"
-tags: ['日常记录','咖啡']
+tags: ["日常记录", "咖啡"]
 ---
 
 ![](https://github.com/user-attachments/assets/0518eba4-354f-4653-9cd6-3216dcf74bf5)

@@ -2,7 +2,7 @@
 title: "近两周的咖啡合集"
 date: 2024-09-17
 summary: "虽然日记补不了，但是照片可以。"
-tags: ['日常记录','咖啡']
+tags: ["日常记录", "咖啡"]
 ---
 
 ![HEIF Image](https://github.com/user-attachments/assets/0e14de94-05dd-4a49-a5d9-ffbb42457b17)

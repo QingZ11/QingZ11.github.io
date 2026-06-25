@@ -2,7 +2,7 @@
 title: "我的猫室友们·番茄篇 vol.03 08.23"
 date: 2024-08-23
 summary: "世界上有两只可爱的小猫咪：一只叫小白，另外一只叫小黄 😘"
-tags: ['图集','番茄']
+tags: ["图集", "番茄"]
 ---
 
 ![HEIF Image 2](https://github.com/user-attachments/assets/43953134-b859-4527-827c-41a553341583)

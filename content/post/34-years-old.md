@@ -2,7 +2,7 @@
 title: "生日·写给自己的一封信"
 date: 2024-08-30
 summary: "既然没人给我写信了，那么就自己来吧。"
-tags: ['随便bb']
+tags: ["随便bb"]
 ---
 
 ![cake](https://github.com/user-attachments/assets/64588209-b04e-4c19-8e7f-8fb5d7d0bd86)

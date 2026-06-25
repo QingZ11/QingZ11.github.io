@@ -2,7 +2,7 @@
 title: "优化了一次咖啡泡法"
 date: 2024-11-02
 summary: "在喝了人生第一次他人冲泡的手冲咖啡之后。"
-tags: ['日常记录','咖啡']
+tags: ["日常记录", "咖啡"]
 ---
 
 ![HEIF Image](https://github.com/user-attachments/assets/0e14de94-05dd-4a49-a5d9-ffbb42457b17)

@@ -2,7 +2,7 @@
 title: "生日·写给自己的第二封信"
 date: 2025-08-30
 summary: "Evaz 様 お誕生日おめでとうございます。特別壁紙などのプレゼントをお贈りします。——来自 Nintendo 的邮件"
-tags: ['随便bb']
+tags: ["随便bb"]
 ---
 
 ![cake](https://qingz11.github.io/images/post/0_2.png)
