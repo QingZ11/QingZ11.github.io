@@ -14,8 +14,8 @@ permissions:
   issues: read
 
 concurrency:
-  group: issue-to-hugo-post-${{ github.event.issue.number }}
-  cancel-in-progress: true
+  group: issue-to-hugo-content
+  cancel-in-progress: false
 
 env:
   HUGO_SOURCE_REF: hugo-source
@@ -99,6 +99,9 @@ jobs:
 
       - name: Sync generated site
         run: |
+          git -C site fetch origin ${HUGO_PAGES_REF}
+          git -C site reset --hard origin/${HUGO_PAGES_REF}
+
           rsync -a --delete \
             --exclude='.git/' \
             --exclude='.github/' \
@@ -123,9 +126,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Publish issue #${{ github.event.issue.number }}"
-          git pull --rebase origin ${HUGO_PAGES_REF}
-          git push origin HEAD:${HUGO_PAGES_REF} || {
-            git fetch origin ${HUGO_PAGES_REF}
-            git rebase origin/${HUGO_PAGES_REF}
-            git push origin HEAD:${HUGO_PAGES_REF}
-          }
+          git push origin HEAD:${HUGO_PAGES_REF}
