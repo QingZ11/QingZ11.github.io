@@ -58,6 +58,9 @@ jobs:
           "$GITHUB_EVENT_PATH"
           "source/content"
 
+      - name: Normalize Hugo content
+        run: python3 site/.github/scripts/normalize_hugo_content.py source/content
+
       - name: Commit Hugo source changes
         working-directory: source
         run: |
