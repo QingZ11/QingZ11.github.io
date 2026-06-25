@@ -95,6 +95,17 @@ def main() -> None:
         subprocess.run(["python3", str(NORMALIZER), str(content_root)], check=True, text=True, capture_output=True)
         output = post_path.read_text(encoding="utf-8")
         assert 'tags: ["日记"]' in output, output
+    with tempfile.TemporaryDirectory() as temp_dir:
+        content_root = Path(temp_dir) / "content"
+        post_path = content_root / "post" / "bad-multiline-tags.md"
+        post_path.parent.mkdir(parents=True)
+        post_path.write_text(
+            "---\ntitle: Bad Multiline Tags\ndate: 2026-06-25\ntags:\n  - 日记\n  - \n  - /\n---\n\nBody\n",
+            encoding="utf-8",
+        )
+        subprocess.run(["python3", str(NORMALIZER), str(content_root)], check=True, text=True, capture_output=True)
+        output = post_path.read_text(encoding="utf-8")
+        assert 'tags: ["日记"]' in output, output
     print("issue_to_hugo_post.py smoke tests passed")
 
 

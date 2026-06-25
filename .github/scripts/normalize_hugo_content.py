@@ -11,6 +11,7 @@ from typing import Any
 
 
 TAG_LINE = re.compile(r"^tags:\s*(.*)$")
+FRONT_MATTER_END = "---"
 
 
 def parse_tags(raw: str) -> list[str] | None:
@@ -19,10 +20,13 @@ def parse_tags(raw: str) -> list[str] | None:
         return []
 
     if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return []
         try:
             parsed: Any = ast.literal_eval(value)
         except (SyntaxError, ValueError):
-            return None
+            return [strip_quotes(part.strip()) for part in inner.split(",")]
         if isinstance(parsed, list):
             return [str(item).strip() for item in parsed]
         return None
@@ -30,9 +34,46 @@ def parse_tags(raw: str) -> list[str] | None:
     return [value.strip().strip("'\"")]
 
 
+def strip_quotes(value: str) -> str:
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+        return value[1:-1]
+    return value
+
+
 def render_tags(tags: list[str]) -> str:
     rendered = ", ".join('"' + tag.replace('"', '\\"') + '"' for tag in tags)
     return f"tags: [{rendered}]"
+
+
+def clean_tags(tags: list[str]) -> list[str]:
+    normalized = []
+    for tag in tags:
+        tag = tag.strip().strip("'\"")
+        if not tag or tag == "/":
+            continue
+        normalized.append(tag)
+    return normalized
+
+
+def parse_multiline_tags(lines: list[str], start_index: int) -> tuple[list[str], int]:
+    tags = []
+    index = start_index + 1
+    while index < len(lines):
+        line = lines[index]
+        stripped = line.strip()
+        if stripped == FRONT_MATTER_END:
+            break
+        if not stripped:
+            index += 1
+            continue
+        if not line.startswith((" ", "\t", "-")) and ":" in line:
+            break
+        if stripped.startswith("-"):
+            tags.append(strip_quotes(stripped[1:].strip()))
+            index += 1
+            continue
+        break
+    return tags, index
 
 
 def normalize_file(path: Path) -> bool:
@@ -42,30 +83,40 @@ def normalize_file(path: Path) -> bool:
         return False
 
     changed = False
-    for index, line in enumerate(lines[1:], start=1):
+    index = 1
+    while index < len(lines):
+        line = lines[index]
         if line.strip() == "---":
             break
 
         match = TAG_LINE.match(line)
         if not match:
+            index += 1
             continue
 
-        tags = parse_tags(match.group(1))
+        raw_tags = match.group(1)
+        if raw_tags.strip():
+            tags = parse_tags(raw_tags)
+            next_index = index + 1
+        else:
+            tags, next_index = parse_multiline_tags(lines, index)
+
         if tags is None:
+            index += 1
             continue
 
-        normalized = []
-        for tag in tags:
-            tag = tag.strip()
-            if not tag or tag == "/":
-                changed = True
-                continue
-            normalized.append(tag)
+        normalized = clean_tags(tags)
+        if normalized != tags:
+            changed = True
 
         new_line = render_tags(normalized)
-        if new_line != line:
-            lines[index] = new_line
+        if new_line != line or next_index != index + 1:
+            lines[index:next_index] = [new_line]
+            index += 1
             changed = True
+            continue
+
+        index += 1
 
     if changed:
         path.write_text("\n".join(lines) + "\n", encoding="utf-8")
