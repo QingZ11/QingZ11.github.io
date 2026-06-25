@@ -20,7 +20,6 @@ concurrency:
 env:
   HUGO_SOURCE_REF: hugo-source
   HUGO_PAGES_REF: master
-  HUGO_SECTION: post
   HUGO_VERSION: 0.148.2
 
 jobs:
@@ -50,11 +49,14 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
+      - name: Validate issue converter
+        run: python3 site/.github/scripts/test_issue_to_hugo_post.py
+
       - name: Convert issue to Markdown
         run: >
           python3 site/.github/scripts/issue_to_hugo_post.py
           "$GITHUB_EVENT_PATH"
-          "source/content/${HUGO_SECTION}"
+          "source/content"
 
       - name: Commit Hugo source changes
         working-directory: source
@@ -66,8 +68,8 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "content/${HUGO_SECTION}/issue-${{ github.event.issue.number }}.md"
-          git commit -m "Update post from issue #${{ github.event.issue.number }}"
+          git add content
+          git commit -m "Update content from issue #${{ github.event.issue.number }}"
           git push origin HEAD:${HUGO_SOURCE_REF}
 
       - name: Reuse published images for Hugo build
