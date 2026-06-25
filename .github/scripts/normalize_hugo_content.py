@@ -49,7 +49,7 @@ def clean_tags(tags: list[str]) -> list[str]:
     normalized = []
     for tag in tags:
         tag = tag.strip().strip("'\"")
-        if not tag or tag == "/":
+        if not tag or "/" in tag:
             continue
         normalized.append(tag)
     return normalized

@@ -89,7 +89,7 @@ def main() -> None:
         post_path = content_root / "post" / "bad-tags.md"
         post_path.parent.mkdir(parents=True)
         post_path.write_text(
-            "---\ntitle: Bad Tags\ndate: 2026-06-25\ntags: ['日记', '', '/']\n---\n\nBody\n",
+            "---\ntitle: Bad Tags\ndate: 2026-06-25\ntags: ['日记', '', '/', '/post/202606-1/']\n---\n\nBody\n",
             encoding="utf-8",
         )
         subprocess.run(["python3", str(NORMALIZER), str(content_root)], check=True, text=True, capture_output=True)
@@ -100,7 +100,7 @@ def main() -> None:
         post_path = content_root / "post" / "bad-multiline-tags.md"
         post_path.parent.mkdir(parents=True)
         post_path.write_text(
-            "---\ntitle: Bad Multiline Tags\ndate: 2026-06-25\ntags:\n  - 日记\n  - \n  - /\n---\n\nBody\n",
+            "---\ntitle: Bad Multiline Tags\ndate: 2026-06-25\ntags:\n  - 日记\n  - \n  - /\n  - /post/202606-1/\n---\n\nBody\n",
             encoding="utf-8",
         )
         subprocess.run(["python3", str(NORMALIZER), str(content_root)], check=True, text=True, capture_output=True)

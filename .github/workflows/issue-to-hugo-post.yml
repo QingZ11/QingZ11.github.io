@@ -82,6 +82,13 @@ jobs:
             rsync -a site/images/ source/static/images/
           fi
 
+      - name: Diagnose Hugo content
+        run: |
+          if [ -f source/content/post/202606-1.md ]; then
+            sed -n '1,30p' source/content/post/202606-1.md
+          fi
+          grep -RIn "tags:.*\/" source/content || true
+
       - name: Build Hugo site
         run: hugo --source source --destination "$RUNNER_TEMP/hugo-site"
 
