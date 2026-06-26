@@ -28,10 +28,17 @@ jobs:
       ${{
         github.event.issue &&
         !github.event.issue.pull_request &&
-        contains(toJson(github.event.issue.labels), 'kind:') &&
         (
-          contains(toJson(github.event.issue.labels), 'status:publish') ||
-          contains(toJson(github.event.issue.labels), 'status:deleted')
+          contains(github.event.issue.labels.*.name, 'kind:post') ||
+          contains(github.event.issue.labels.*.name, 'kind:blog') ||
+          contains(github.event.issue.labels.*.name, 'kind:book') ||
+          contains(github.event.issue.labels.*.name, 'kind:watch') ||
+          contains(github.event.issue.labels.*.name, 'kind:podcast') ||
+          contains(github.event.issue.labels.*.name, 'kind:cat-pic')
+        ) &&
+        (
+          contains(github.event.issue.labels.*.name, 'status:publish') ||
+          contains(github.event.issue.labels.*.name, 'status:deleted')
         )
       }}
     runs-on: ubuntu-latest
@@ -75,10 +82,12 @@ jobs:
         run: python3 site/.github/scripts/normalize_hugo_content.py source/content
 
       - name: Commit Hugo source changes
+        id: source_changes
         working-directory: source
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "No source changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -92,11 +101,14 @@ jobs:
             git rebase origin/${HUGO_SOURCE_REF}
             git push origin HEAD:${HUGO_SOURCE_REF}
           }
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Build Hugo site
+        if: steps.source_changes.outputs.changed == 'true'
         run: hugo --source source --destination "$RUNNER_TEMP/hugo-site"
 
       - name: Sync generated site
+        if: steps.source_changes.outputs.changed == 'true'
         run: |
           git -C site fetch origin ${HUGO_PAGES_REF}
           git -C site reset --hard origin/${HUGO_PAGES_REF}
@@ -114,6 +126,7 @@ jobs:
             site/
 
       - name: Commit generated site
+        if: steps.source_changes.outputs.changed == 'true'
         working-directory: site
         run: |
           if [ -z "$(git status --porcelain)" ]; then

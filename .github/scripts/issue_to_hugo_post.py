@@ -14,6 +14,14 @@ from typing import Any
 KIND_LABEL_PREFIX = "kind:"
 CONTROL_LABEL_PREFIXES = ("kind:", "status:", "type:")
 DELETE_LABEL = "status:deleted"
+PUBLISH_LABEL = "status:publish"
+
+REQUIRED_METADATA: dict[str, tuple[str, ...]] = {
+    "blog": ("external_url",),
+    "book": ("cover", "author", "category"),
+    "watch": ("cover", "timeline", "category"),
+    "podcast": ("episode", "category"),
+}
 
 KIND_CONFIG: dict[str, dict[str, Any]] = {
     "post": {
@@ -44,6 +52,12 @@ KIND_CONFIG: dict[str, dict[str, Any]] = {
         "section": "podcasts",
         "metadata_keys": ("date", "external_url", "cover", "episode", "category"),
         "body": False,
+        "tags": False,
+    },
+    "cat-pic": {
+        "section": "pics",
+        "metadata_keys": ("date", "cats", "summary"),
+        "body": True,
         "tags": False,
     },
 }
@@ -120,8 +134,6 @@ def content_kind(issue: dict[str, Any]) -> str:
         die(f"issue has multiple kind labels: {', '.join(unique_kinds)}")
 
     kind = unique_kinds[0]
-    if kind == "cat-pic":
-        die("kind:cat-pic is reserved for the Pics refactor and is not implemented yet")
     if kind not in KIND_CONFIG:
         die(f"unsupported kind label: kind:{kind}")
     return kind
@@ -139,6 +151,16 @@ def content_tags(issue: dict[str, Any]) -> list[str]:
 
 def is_deleted(issue: dict[str, Any]) -> bool:
     return any(label.lower() == DELETE_LABEL for label in label_names(issue))
+
+
+def validate_status_labels(issue: dict[str, Any]) -> None:
+    statuses = sorted({label.lower() for label in label_names(issue) if label.lower().startswith("status:")})
+    supported_statuses = {PUBLISH_LABEL, DELETE_LABEL}
+    unsupported = [status for status in statuses if status not in supported_statuses]
+    if unsupported:
+        die(f"unsupported status label: {', '.join(unsupported)}")
+    if PUBLISH_LABEL in statuses and DELETE_LABEL in statuses:
+        die("issue cannot have both status:publish and status:deleted")
 
 
 def parse_metadata_value(raw: str) -> Any:
@@ -206,6 +228,34 @@ def plain_summary(markdown: str) -> str:
     return ""
 
 
+def markdown_image_urls(markdown: str) -> list[str]:
+    return [match.strip() for match in re.findall(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)", markdown) if match.strip()]
+
+
+def is_present(value: Any) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, list):
+        return any(is_present(item) for item in value)
+    return True
+
+
+def validate_content(kind: str, metadata: dict[str, Any], markdown: str) -> None:
+    missing = [key for key in REQUIRED_METADATA.get(kind, ()) if not is_present(metadata.get(key))]
+    if missing:
+        die(f"kind:{kind} missing required metadata: {', '.join(missing)}")
+
+    if kind == "post" and not markdown.strip():
+        die("kind:post requires Markdown body content")
+
+    if kind == "cat-pic":
+        images = metadata.get("images") or markdown_image_urls(markdown)
+        if not images:
+            die("kind:cat-pic requires image URLs in metadata images or Markdown image syntax")
+
+
 def output_path(root_dir: Path, kind: str, issue_number: int) -> Path:
     section = KIND_CONFIG[kind]["section"]
     return root_dir / section / f"issue-{issue_number}.md"
@@ -215,6 +265,7 @@ def render_content(issue: dict[str, Any], kind: str) -> str:
     body = issue.get("body") or ""
     metadata, markdown = split_metadata(body.strip())
     config = KIND_CONFIG[kind]
+    validate_content(kind, metadata, markdown)
 
     title = str(issue.get("title") or f"Issue #{issue['number']}")
     front_matter: dict[str, Any] = {
@@ -230,6 +281,12 @@ def render_content(issue: dict[str, Any], kind: str) -> str:
 
     if kind == "post" and "summary" not in front_matter:
         front_matter["summary"] = plain_summary(markdown)
+
+    if kind == "cat-pic":
+        images = metadata.get("images") or markdown_image_urls(markdown)
+        front_matter["images"] = images
+        if "summary" not in front_matter:
+            front_matter["summary"] = plain_summary(markdown)
 
     if config["tags"]:
         front_matter["tags"] = content_tags(issue)
@@ -255,6 +312,7 @@ def main() -> None:
     event_path = Path(sys.argv[1])
     content_root = Path(sys.argv[2])
     issue = load_issue(event_path)
+    validate_status_labels(issue)
     kind = content_kind(issue)
     path = output_path(content_root, kind, int(issue["number"]))
 

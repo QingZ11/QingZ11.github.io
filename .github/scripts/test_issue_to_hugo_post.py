@@ -35,6 +35,16 @@ def run_script(event_path: Path, content_root: Path) -> None:
     )
 
 
+def run_script_expect_failure(event_path: Path, content_root: Path, expected_error: str) -> None:
+    result = subprocess.run(
+        ["python3", str(SCRIPT), str(event_path), str(content_root)],
+        text=True,
+        capture_output=True,
+    )
+    assert result.returncode != 0, "script should fail"
+    assert expected_error in result.stderr, result.stderr
+
+
 def run_case(kind: str, expected_path: str, expected_bits: list[str], body: str, labels: list[str] | None = None) -> None:
     labels = labels or []
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -79,14 +89,25 @@ def main() -> None:
     run_case(
         "watch",
         "watches/issue-105.md",
-        ['timeline: "[日]2026 年 1 月开播"', 'category: "剧情 / 喜欢"'],
-        "---\ntimeline: [日]2026 年 1 月开播\ncategory: 剧情 / 喜欢\n---",
+        ['cover: "https://example.com/watch.jpg"', 'timeline: "[日]2026 年 1 月开播"', 'category: "剧情 / 喜欢"'],
+        "---\ncover: https://example.com/watch.jpg\ntimeline: [日]2026 年 1 月开播\ncategory: 剧情 / 喜欢\n---",
     )
     run_case(
         "podcast",
         "podcasts/issue-107.md",
         ['episode: "播客名"', 'category: "科技 / 喜欢"'],
         "---\nepisode: 播客名\ncategory: 科技 / 喜欢\n---",
+    )
+    run_case(
+        "cat-pic",
+        "pics/issue-107.md",
+        [
+            'cats: ["番茄", "葱白"]',
+            'images: ["https://github.com/user-attachments/assets/cat-1", "https://example.com/cat-2.jpg"]',
+            "今天的说明。",
+        ],
+        "---\ndate: 2026-06-24\ncats: [番茄, 葱白]\n---\n\n今天的说明。\n\n![番茄](https://github.com/user-attachments/assets/cat-1)\n![葱白](https://example.com/cat-2.jpg)",
+        ["status:publish"],
     )
     with tempfile.TemporaryDirectory() as temp_dir:
         content_root = Path(temp_dir) / "content"
@@ -128,6 +149,42 @@ def main() -> None:
         )
         run_script(event_path, content_root)
         assert not output_path.exists(), "status:deleted should remove the generated post"
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        event_path = root / "event.json"
+        content_root = root / "content"
+        event_path.write_text(
+            json.dumps(event("blog", 300, "Broken Blog", "---\nsummary: 缺链接\n---", ["status:publish"]), ensure_ascii=False),
+            encoding="utf-8",
+        )
+        run_script_expect_failure(event_path, content_root, "kind:blog missing required metadata: external_url")
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        event_path = root / "event.json"
+        content_root = root / "content"
+        event_path.write_text(
+            json.dumps(event("cat-pic", 301, "Broken Cat Pic", "---\ndate: 2026-06-24\n---\n\n没有图片", ["status:publish"]), ensure_ascii=False),
+            encoding="utf-8",
+        )
+        run_script_expect_failure(event_path, content_root, "kind:cat-pic requires image URLs")
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        event_path = root / "event.json"
+        content_root = root / "content"
+        event_path.write_text(
+            json.dumps(event("post", 302, "Conflicting Status", "Body", ["status:publish", "status:deleted"]), ensure_ascii=False),
+            encoding="utf-8",
+        )
+        run_script_expect_failure(event_path, content_root, "issue cannot have both status:publish and status:deleted")
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        event_path = root / "event.json"
+        content_root = root / "content"
+        event_path.write_text(
+            json.dumps(event("post", 303, "Unknown Status", "Body", ["status:archived"]), ensure_ascii=False),
+            encoding="utf-8",
+        )
+        run_script_expect_failure(event_path, content_root, "unsupported status label: status:archived")
     print("issue_to_hugo_post.py smoke tests passed")
 
 
