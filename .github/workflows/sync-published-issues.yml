@@ -1,0 +1,120 @@
+name: Sync published issues
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: issue-to-hugo-content
+  cancel-in-progress: false
+
+env:
+  HUGO_SOURCE_REF: hugo-source
+  HUGO_PAGES_REF: master
+  HUGO_VERSION: 0.148.2
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HUGO_PAGES_REF }}
+          path: site
+          fetch-depth: 1
+          sparse-checkout: |
+            /*
+            !/images/
+          sparse-checkout-cone-mode: false
+
+      - name: Checkout Hugo source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HUGO_SOURCE_REF }}
+          path: source
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Validate issue converter
+        run: python3 site/.github/scripts/test_issue_to_hugo_post.py
+
+      - name: Sync published issues to Markdown
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >
+          python3 site/.github/scripts/sync_published_issues.py
+          "${{ github.repository }}"
+          "source/content"
+
+      - name: Normalize Hugo content
+        run: python3 site/.github/scripts/normalize_hugo_content.py source/content
+
+      - name: Commit Hugo source changes
+        id: source_changes
+        working-directory: source
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No source changes; rebuilding generated site for consistency."
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content
+          git commit -m "Sync published issues"
+          git pull --rebase origin ${HUGO_SOURCE_REF}
+          git push origin HEAD:${HUGO_SOURCE_REF} || {
+            git fetch origin ${HUGO_SOURCE_REF}
+            git rebase origin/${HUGO_SOURCE_REF}
+            git push origin HEAD:${HUGO_SOURCE_REF}
+          }
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Build Hugo site
+        if: steps.source_changes.outputs.changed == 'true'
+        run: hugo --source source --destination "$RUNNER_TEMP/hugo-site"
+
+      - name: Sync generated site
+        if: steps.source_changes.outputs.changed == 'true'
+        run: |
+          git -C site fetch origin ${HUGO_PAGES_REF}
+          git -C site reset --hard origin/${HUGO_PAGES_REF}
+
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitignore' \
+            --exclude='.gitmodules' \
+            --exclude='CNAME' \
+            --exclude='images/' \
+            --exclude='myBlog/' \
+            --exclude='myBlogCode/' \
+            "$RUNNER_TEMP/hugo-site/" \
+            site/
+
+      - name: Commit generated site
+        if: steps.source_changes.outputs.changed == 'true'
+        working-directory: site
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No generated site changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish synced issues"
+          git push origin HEAD:${HUGO_PAGES_REF}

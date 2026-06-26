@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 import subprocess
 import tempfile
 from pathlib import Path
@@ -11,6 +12,7 @@ from pathlib import Path
 
 SCRIPT = Path(__file__).with_name("issue_to_hugo_post.py")
 NORMALIZER = Path(__file__).with_name("normalize_hugo_content.py")
+SYNC_SCRIPT = Path(__file__).with_name("sync_published_issues.py")
 
 
 def event(kind: str, number: int, title: str, body: str, labels: list[str]) -> dict:
@@ -63,6 +65,14 @@ def run_case(kind: str, expected_path: str, expected_bits: list[str], body: str,
         output = output_path.read_text(encoding="utf-8")
         for bit in expected_bits:
             assert bit in output, f"missing {bit!r} in:\n{output}"
+
+
+def load_sync_module():
+    spec = importlib.util.spec_from_file_location("sync_published_issues", SYNC_SCRIPT)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def main() -> None:
@@ -199,6 +209,21 @@ def main() -> None:
             encoding="utf-8",
         )
         run_script_expect_failure(event_path, content_root, "unsupported status label: status:archived")
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        content_root = root / "content"
+
+        fixture = [
+            event("post", 401, "Batch Post", "Batch body", ["status:publish"])["issue"],
+            event("post", 402, "Draft Post", "Draft body", [])["issue"],
+            event("cat-pic", 403, "Batch Cat", "![cat](https://github.com/user-attachments/assets/batch-cat)", ["status:publish"])["issue"],
+        ]
+        synced_count = load_sync_module().sync_issues(fixture, content_root)
+
+        assert synced_count == 2, "only published/deleted content issues should sync"
+        assert (content_root / "post" / "issue-401.md").exists(), "published post should sync"
+        assert not (content_root / "post" / "issue-402.md").exists(), "draft post should not sync"
+        assert (content_root / "pics" / "issue-403.md").exists(), "published cat pic should sync"
     print("issue_to_hugo_post.py smoke tests passed")
 
 
