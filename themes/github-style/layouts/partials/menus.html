@@ -6,6 +6,15 @@
 {{ $watches := where .Site.RegularPages "Section" "watches" }}
 {{ $podcasts := where .Site.RegularPages "Section" "podcasts" }}
 {{ $inputs_count := add (len $blogs) (len $books) (len $watches) (len $podcasts) }}
+{{ $issue_pics_count := 0 }}
+{{ range where .Site.RegularPages "Section" "pics" }}
+  {{ $issue_pics_count = add $issue_pics_count (len (default (slice) .Params.images)) }}
+{{ end }}
+{{ $legacy_pics_count := 0 }}
+{{ if fileExists "static/images/pics/lff-cat" }}
+  {{ $legacy_pics_count = len (readDir "static/images/pics/lff-cat") }}
+{{ end }}
+{{ $pics_count := add $issue_pics_count $legacy_pics_count }}
 
 <div class="mt-4 position-sticky top-0 d-none d-md-block bg-white width-full border-bottom color-border-secondary"
   style="z-index:3;">
@@ -40,8 +49,6 @@
                   <path fill-rule="evenodd" d="M8.878.392a1.75 1.75 0 00-1.756 0l-5.25 3.045A1.75 1.75 0 001 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 001.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392zM7.875 1.69a.25.25 0 01.25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685zM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677zm6.25 8.271l4.625-2.683a.25.25 0 00.125-.216V5.677L8.75 8.432v5.516z"></path>
                 </svg>
                 Pics
-                {{ $pics_files := readDir "static/images/pics/lff-cat" }}
-                {{ $pics_count := len $pics_files }}
                 <span class="Counter">{{ lang.FormatNumber 0 $pics_count }}</span>
               </a>
             <a class="UnderlineNav-item {{ if eq .Type "inputs" }} selected {{ end }}" href="{{ urls.JoinPath .Site.BaseURL "inputs" }}">

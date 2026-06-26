@@ -1,3 +1,17 @@
+{{ $legacyFiles := slice }}
+{{ if fileExists "static/images/pics/lff-cat" }}
+  {{ $legacyFiles = readDir "static/images/pics/lff-cat" }}
+{{ end }}
+{{ $issuePicItems := slice }}
+{{ range where .Site.RegularPages "Section" "pics" }}
+  {{ $page := . }}
+  {{ $year := $page.Date.Format "2006" }}
+  {{ range $imageIndex, $image := $page.Params.images }}
+    {{ $fileName := printf "%s-issue-%v-%03d" ($page.Date.Format "20060102") ($page.Params.github_issue | default $page.File.BaseFileName) $imageIndex }}
+    {{ $issuePicItems = $issuePicItems | append (dict "src" (printf "%v" $image) "year" $year "fileName" $fileName "title" $page.Title) }}
+  {{ end }}
+{{ end }}
+
 <div class="container-xl clearfix px-3 px-md-4 px-lg-5">
   <div class="position-relative">
     {{/* 头部展示区域 */}}
@@ -117,10 +131,13 @@
     {{/* 年份导航 */}}
     <div class="mb-4">
       <div class="d-flex flex-wrap">
-        {{ $files := readDir "static/images/pics/lff-cat" }}
         {{ $yearMap := dict }}
+        {{ range $issuePicItems }}
+          {{ $count := index $yearMap .year | default 0 }}
+          {{ $yearMap = merge $yearMap (dict .year (add $count 1)) }}
+        {{ end }}
         {{/* 统计每年的图片数量 */}}
-        {{ range $files }}
+        {{ range $legacyFiles }}
           {{ $fileName := .Name }}
           {{/* 只统计图片文件 */}}
           {{ $isImage := or (strings.HasSuffix $fileName ".jpg") (strings.HasSuffix $fileName ".jpeg") (strings.HasSuffix $fileName ".png") (strings.HasSuffix $fileName ".gif") (strings.HasSuffix $fileName ".webp") (strings.HasSuffix $fileName ".JPG") (strings.HasSuffix $fileName ".JPEG") (strings.HasSuffix $fileName ".PNG") }}
@@ -240,8 +257,15 @@
         }
       </style>
       <div id="pics-grid">
-        {{ $files := readDir "static/images/pics/lff-cat" }}
-        {{ range $index, $f := $files }}
+        {{ range $index, $pic := $issuePicItems }}
+          <div class="pic-item" data-src="{{ $pic.src }}" data-year="{{ $pic.year }}" data-filename="{{ $pic.fileName }}" data-index="{{ $index }}" data-title="{{ $pic.title }}" style="display:none;">
+            <a href="{{ $pic.src }}" class="pic-thumb d-block">
+              <img class="width-full rounded-2 lazy-img" alt="{{ $pic.title }}" style="display:block;">
+            </a>
+          </div>
+        {{ end }}
+        {{ $issuePicCount := len $issuePicItems }}
+        {{ range $index, $f := $legacyFiles }}
           {{ $fileName := $f.Name }}
           {{/* 只处理图片文件，过滤 .DS_Store 等非图片文件 */}}
           {{ $isImage := or (strings.HasSuffix $fileName ".jpg") (strings.HasSuffix $fileName ".jpeg") (strings.HasSuffix $fileName ".png") (strings.HasSuffix $fileName ".gif") (strings.HasSuffix $fileName ".webp") (strings.HasSuffix $fileName ".JPG") (strings.HasSuffix $fileName ".JPEG") (strings.HasSuffix $fileName ".PNG") }}
@@ -254,10 +278,10 @@
               {{ if $isValidYear }}
                 {{ $src := (print "/images/pics/lff-cat/" $fileName) }}
                 {{ $batchClass := "" }}
-                {{ if lt $index 27 }}
+                {{ if lt (add $issuePicCount $index) 27 }}
                   {{ $batchClass = "first-batch" }}
                 {{ end }}
-                <div class="pic-item {{ $batchClass }}" data-src="{{ $src }}" data-year="{{ $year }}" data-filename="{{ $fileName }}" data-index="{{ $index }}" style="display:none;">
+                <div class="pic-item {{ $batchClass }}" data-src="{{ $src }}" data-year="{{ $year }}" data-filename="{{ $fileName }}" data-index="{{ add $issuePicCount $index }}" style="display:none;">
                   <a href="{{ $src }}" class="pic-thumb d-block">
                     <img class="width-full rounded-2 lazy-img" style="display:block;">
                   </a>
