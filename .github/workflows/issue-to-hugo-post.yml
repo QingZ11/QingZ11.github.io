@@ -73,6 +73,7 @@ jobs:
           has_kind = bool(labels_lower & supported_kinds)
           statuses = {label for label in labels_lower if label.startswith("status:")}
           should_run = has_kind and bool(statuses)
+          is_delete = "status:deleted" in labels_lower
 
           normalized_event = dict(event)
           normalized_event["issue"] = current_issue
@@ -82,6 +83,7 @@ jobs:
           output_path = Path(os.environ["GITHUB_OUTPUT"])
           with output_path.open("a", encoding="utf-8") as output:
               output.write(f"should_run={'true' if should_run else 'false'}\n")
+              output.write(f"is_delete={'true' if is_delete else 'false'}\n")
               output.write(f"event_path={normalized_path}\n")
           PY
 
@@ -135,7 +137,12 @@ jobs:
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "No source changes."
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+            if [ "${{ steps.route.outputs.is_delete }}" = "true" ]; then
+              echo "Deletion event with no source changes; build will still run to remove stale generated pages."
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+            fi
             exit 0
           fi
 
