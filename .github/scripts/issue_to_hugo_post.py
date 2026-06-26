@@ -228,8 +228,20 @@ def plain_summary(markdown: str) -> str:
     return ""
 
 
-def markdown_image_urls(markdown: str) -> list[str]:
-    return [match.strip() for match in re.findall(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)", markdown) if match.strip()]
+def content_image_urls(markdown: str) -> list[str]:
+    urls: list[str] = []
+    patterns = (
+        r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)",
+        r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"'][^>]*>",
+        r"https?://[^\s<>\")']+\.(?:jpg|jpeg|png|gif|webp)(?:\?[^\s<>\")']*)?",
+        r"https://github\.com/user-attachments/assets/[A-Za-z0-9_-]+",
+    )
+    for pattern in patterns:
+        for match in re.findall(pattern, markdown, flags=re.IGNORECASE):
+            url = match.strip()
+            if url and url not in urls:
+                urls.append(url)
+    return urls
 
 
 def is_present(value: Any) -> bool:
@@ -251,9 +263,9 @@ def validate_content(kind: str, metadata: dict[str, Any], markdown: str) -> None
         die("kind:post requires Markdown body content")
 
     if kind == "cat-pic":
-        images = metadata.get("images") or markdown_image_urls(markdown)
+        images = metadata.get("images") or content_image_urls(markdown)
         if not images:
-            die("kind:cat-pic requires image URLs in metadata images or Markdown image syntax")
+            die("kind:cat-pic requires image URLs in metadata images, Markdown image syntax, HTML img src, or plain image URLs")
 
 
 def output_path(root_dir: Path, kind: str, issue_number: int) -> Path:
@@ -283,7 +295,7 @@ def render_content(issue: dict[str, Any], kind: str) -> str:
         front_matter["summary"] = plain_summary(markdown)
 
     if kind == "cat-pic":
-        images = metadata.get("images") or markdown_image_urls(markdown)
+        images = metadata.get("images") or content_image_urls(markdown)
         front_matter["images"] = images
         if "summary" not in front_matter:
             front_matter["summary"] = plain_summary(markdown)

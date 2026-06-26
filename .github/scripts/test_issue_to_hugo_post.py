@@ -109,6 +109,20 @@ def main() -> None:
         "---\ndate: 2026-06-24\ncats: [番茄, 葱白]\n---\n\n今天的说明。\n\n![番茄](https://github.com/user-attachments/assets/cat-1)\n![葱白](https://example.com/cat-2.jpg)",
         ["status:publish"],
     )
+    run_case(
+        "cat-pic",
+        "pics/issue-107.md",
+        ['images: ["https://github.com/user-attachments/assets/cat-html"]'],
+        "---\ndate: 2026-06-24\n---\n\n<img width=\"100\" alt=\"番茄\" src=\"https://github.com/user-attachments/assets/cat-html\">",
+        ["status:publish"],
+    )
+    run_case(
+        "cat-pic",
+        "pics/issue-107.md",
+        ['images: ["https://github.com/user-attachments/assets/cat-plain"]'],
+        "---\ndate: 2026-06-24\n---\n\nhttps://github.com/user-attachments/assets/cat-plain",
+        ["status:publish"],
+    )
     with tempfile.TemporaryDirectory() as temp_dir:
         content_root = Path(temp_dir) / "content"
         post_path = content_root / "post" / "bad-tags.md"

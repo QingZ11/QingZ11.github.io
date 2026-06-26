@@ -27,24 +27,66 @@ jobs:
     if: >-
       ${{
         github.event.issue &&
-        !github.event.issue.pull_request &&
-        (
-          contains(github.event.issue.labels.*.name, 'kind:post') ||
-          contains(github.event.issue.labels.*.name, 'kind:blog') ||
-          contains(github.event.issue.labels.*.name, 'kind:book') ||
-          contains(github.event.issue.labels.*.name, 'kind:watch') ||
-          contains(github.event.issue.labels.*.name, 'kind:podcast') ||
-          contains(github.event.issue.labels.*.name, 'kind:cat-pic')
-        ) &&
-        (
-          contains(github.event.issue.labels.*.name, 'status:publish') ||
-          contains(github.event.issue.labels.*.name, 'status:deleted')
-        )
+        !github.event.issue.pull_request
       }}
     runs-on: ubuntu-latest
 
     steps:
+      - name: Route issue event
+        id: route
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.request
+          from pathlib import Path
+
+          event_path = Path(os.environ["GITHUB_EVENT_PATH"])
+          event = json.loads(event_path.read_text(encoding="utf-8"))
+          issue = event["issue"]
+          repo = os.environ["GITHUB_REPOSITORY"]
+          token = os.environ["GITHUB_TOKEN"]
+
+          request = urllib.request.Request(
+              f"https://api.github.com/repos/{repo}/issues/{issue['number']}",
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {token}",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+          )
+          with urllib.request.urlopen(request) as response:
+              current_issue = json.load(response)
+
+          labels = {str(label.get("name", "")).strip() for label in current_issue.get("labels", [])}
+          labels_lower = {label.lower() for label in labels}
+          supported_kinds = {
+              "kind:post",
+              "kind:blog",
+              "kind:book",
+              "kind:watch",
+              "kind:podcast",
+              "kind:cat-pic",
+          }
+          has_kind = bool(labels_lower & supported_kinds)
+          statuses = {label for label in labels_lower if label.startswith("status:")}
+          should_run = has_kind and bool(statuses)
+
+          normalized_event = dict(event)
+          normalized_event["issue"] = current_issue
+          normalized_path = Path(os.environ["RUNNER_TEMP"]) / "current-issue-event.json"
+          normalized_path.write_text(json.dumps(normalized_event, ensure_ascii=False), encoding="utf-8")
+
+          output_path = Path(os.environ["GITHUB_OUTPUT"])
+          with output_path.open("a", encoding="utf-8") as output:
+              output.write(f"should_run={'true' if should_run else 'false'}\n")
+              output.write(f"event_path={normalized_path}\n")
+          PY
+
       - name: Checkout pages branch
+        if: steps.route.outputs.should_run == 'true'
         uses: actions/checkout@v4
         with:
           ref: ${{ env.HUGO_PAGES_REF }}
@@ -56,6 +98,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Checkout Hugo source branch
+        if: steps.route.outputs.should_run == 'true'
         uses: actions/checkout@v4
         with:
           ref: ${{ env.HUGO_SOURCE_REF }}
@@ -64,24 +107,29 @@ jobs:
           submodules: recursive
 
       - name: Set up Hugo
+        if: steps.route.outputs.should_run == 'true'
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
       - name: Validate issue converter
+        if: steps.route.outputs.should_run == 'true'
         run: python3 site/.github/scripts/test_issue_to_hugo_post.py
 
       - name: Convert issue to Markdown
+        if: steps.route.outputs.should_run == 'true'
         run: >
           python3 site/.github/scripts/issue_to_hugo_post.py
-          "$GITHUB_EVENT_PATH"
+          "${{ steps.route.outputs.event_path }}"
           "source/content"
 
       - name: Normalize Hugo content
+        if: steps.route.outputs.should_run == 'true'
         run: python3 site/.github/scripts/normalize_hugo_content.py source/content
 
       - name: Commit Hugo source changes
+        if: steps.route.outputs.should_run == 'true'
         id: source_changes
         working-directory: source
         run: |
