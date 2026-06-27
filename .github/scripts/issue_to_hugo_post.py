@@ -4,11 +4,14 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+import urllib.parse
+import urllib.request
 
 
 KIND_LABEL_PREFIX = "kind:"
@@ -108,6 +111,91 @@ def issue_date(value: str) -> str:
 def issue_datetime(value: str) -> str:
     parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     return parsed.isoformat()
+
+
+def configured_author_logins() -> set[str]:
+    raw = os.environ.get("BLOG_AUTHOR_LOGINS", "")
+    return {login.strip().lower() for login in raw.split(",") if login.strip()}
+
+
+def github_get(url: str, token: str) -> tuple[object, str | None]:
+    request = urllib.request.Request(
+        url,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {token}",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    with urllib.request.urlopen(request) as response:
+        data = json.load(response)
+        link = response.headers.get("Link")
+    return data, link
+
+
+def next_link(link_header: str | None) -> str | None:
+    if not link_header:
+        return None
+    for part in link_header.split(","):
+        section = part.strip()
+        if 'rel="next"' not in section:
+            continue
+        start = section.find("<")
+        end = section.find(">")
+        if start != -1 and end != -1 and end > start:
+            return section[start + 1 : end]
+    return None
+
+
+def list_issue_comments(issue: dict[str, Any]) -> list[dict[str, Any]]:
+    fixture_comments = issue.get("_comments")
+    if isinstance(fixture_comments, list):
+        return fixture_comments
+
+    token = os.environ.get("GITHUB_TOKEN")
+    repo = os.environ.get("GITHUB_REPOSITORY")
+    if not token or not repo:
+        return []
+
+    api_base = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
+    issue_number = int(issue["number"])
+    query = urllib.parse.urlencode({"per_page": "100"})
+    url = f"{api_base}/repos/{repo}/issues/{issue_number}/comments?{query}"
+    comments: list[dict[str, Any]] = []
+    while url:
+        data, link = github_get(url, token)
+        if not isinstance(data, list):
+            die("GitHub issue comments API returned an unexpected response")
+        comments.extend(data)
+        url = next_link(link)
+    return comments
+
+
+def author_comment_bodies(issue: dict[str, Any]) -> list[str]:
+    author_logins = configured_author_logins()
+    if not author_logins:
+        return []
+
+    bodies: list[str] = []
+    comments = sorted(list_issue_comments(issue), key=lambda item: str(item.get("created_at", "")))
+    for comment in comments:
+        user = comment.get("user") or {}
+        login = str(user.get("login", "")).strip().lower()
+        user_type = str(user.get("type", "")).strip().lower()
+        body = str(comment.get("body") or "").strip()
+        if not body or not login:
+            continue
+        if user_type == "bot":
+            continue
+        if login not in author_logins:
+            continue
+        bodies.append(body)
+    return bodies
+
+
+def combine_markdown_parts(parts: list[str]) -> str:
+    cleaned = [part.strip() for part in parts if part and part.strip()]
+    return "\n\n".join(cleaned)
 
 
 def label_names(issue: dict[str, Any]) -> list[str]:
@@ -277,7 +365,11 @@ def render_content(issue: dict[str, Any], kind: str) -> str:
     body = issue.get("body") or ""
     metadata, markdown = split_metadata(body.strip())
     config = KIND_CONFIG[kind]
-    validate_content(kind, metadata, markdown)
+    full_markdown = markdown
+    if config["body"]:
+        full_markdown = combine_markdown_parts([markdown, *author_comment_bodies(issue)])
+
+    validate_content(kind, metadata, full_markdown)
 
     title = str(issue.get("title") or f"Issue #{issue['number']}")
     front_matter: dict[str, Any] = {
@@ -292,13 +384,13 @@ def render_content(issue: dict[str, Any], kind: str) -> str:
             front_matter[key] = metadata[key]
 
     if kind == "post" and "summary" not in front_matter:
-        front_matter["summary"] = plain_summary(markdown)
+        front_matter["summary"] = plain_summary(full_markdown)
 
     if kind == "cat-pic":
-        images = metadata.get("images") or content_image_urls(markdown)
+        images = metadata.get("images") or content_image_urls(full_markdown)
         front_matter["images"] = images
         if "summary" not in front_matter:
-            front_matter["summary"] = plain_summary(markdown)
+            front_matter["summary"] = plain_summary(full_markdown)
 
     if config["tags"]:
         front_matter["tags"] = content_tags(issue)
@@ -311,8 +403,8 @@ def render_content(issue: dict[str, Any], kind: str) -> str:
         lines.append(f"{key}: {front_matter_value(value)}")
     lines.extend(["---", ""])
 
-    if config["body"] and markdown:
-        lines.extend([markdown, ""])
+    if config["body"] and full_markdown:
+        lines.extend([full_markdown, ""])
 
     return "\n".join(lines)
 

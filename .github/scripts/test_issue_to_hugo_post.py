@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import importlib.util
+import os
 import subprocess
 import tempfile
 from pathlib import Path
@@ -25,6 +26,17 @@ def event(kind: str, number: int, title: str, body: str, labels: list[str]) -> d
             "updated_at": "2026-06-25T04:05:06Z",
             "labels": [{"name": f"kind:{kind}"}] + [{"name": label} for label in labels],
         }
+    }
+
+
+def comment(login: str, body: str, created_at: str, user_type: str = "User") -> dict:
+    return {
+        "body": body,
+        "created_at": created_at,
+        "user": {
+            "login": login,
+            "type": user_type,
+        },
     }
 
 
@@ -133,6 +145,40 @@ def main() -> None:
         "---\ndate: 2026-06-24\n---\n\nhttps://github.com/user-attachments/assets/cat-plain",
         ["status:publish"],
     )
+    with tempfile.TemporaryDirectory() as temp_dir:
+        root = Path(temp_dir)
+        event_path = root / "event.json"
+        content_root = root / "content"
+        payload = event(
+            "post",
+            150,
+            "Post With Comments",
+            "---\nsummary: 带评论\n---\n\n这是 issue 正文。",
+            ["status:publish"],
+        )
+        payload["issue"]["_comments"] = [
+            comment("reader", "别人评论，不应该进入博客。", "2026-06-25T02:00:00Z"),
+            comment("QingZ11", "这是第一段补充。", "2026-06-25T03:00:00Z"),
+            comment("github-actions[bot]", "机器人评论，不应该进入博客。", "2026-06-25T04:00:00Z", "Bot"),
+            comment("QingZ11", "这是第二段补充。", "2026-06-25T05:00:00Z"),
+        ]
+        event_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+
+        old_authors = os.environ.get("BLOG_AUTHOR_LOGINS")
+        os.environ["BLOG_AUTHOR_LOGINS"] = "QingZ11"
+        try:
+            run_script(event_path, content_root)
+        finally:
+            if old_authors is None:
+                os.environ.pop("BLOG_AUTHOR_LOGINS", None)
+            else:
+                os.environ["BLOG_AUTHOR_LOGINS"] = old_authors
+
+        output = (content_root / "post" / "issue-150.md").read_text(encoding="utf-8")
+        assert "这是 issue 正文。\n\n这是第一段补充。\n\n这是第二段补充。" in output, output
+        assert "别人评论" not in output, output
+        assert "机器人评论" not in output, output
+        assert "\n---\n\n这是第一段补充" not in output, output
     with tempfile.TemporaryDirectory() as temp_dir:
         content_root = Path(temp_dir) / "content"
         post_path = content_root / "post" / "bad-tags.md"

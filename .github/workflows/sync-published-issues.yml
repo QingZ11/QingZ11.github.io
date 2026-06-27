@@ -15,6 +15,7 @@ env:
   HUGO_SOURCE_REF: hugo-source
   HUGO_PAGES_REF: master
   HUGO_VERSION: 0.148.2
+  BLOG_AUTHOR_LOGINS: ${{ github.repository_owner }}
 
 jobs:
   sync:

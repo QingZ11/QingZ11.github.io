@@ -8,6 +8,11 @@ on:
       - reopened
       - labeled
       - unlabeled
+  issue_comment:
+    types:
+      - created
+      - edited
+      - deleted
 
 permissions:
   contents: write
@@ -21,6 +26,7 @@ env:
   HUGO_SOURCE_REF: hugo-source
   HUGO_PAGES_REF: master
   HUGO_VERSION: 0.148.2
+  BLOG_AUTHOR_LOGINS: ${{ github.repository_owner }}
 
 jobs:
   publish:
@@ -62,6 +68,11 @@ jobs:
 
           labels = {str(label.get("name", "")).strip() for label in current_issue.get("labels", [])}
           labels_lower = {label.lower() for label in labels}
+          author_logins = {
+              login.strip().lower()
+              for login in os.environ.get("BLOG_AUTHOR_LOGINS", "").split(",")
+              if login.strip()
+          }
           supported_kinds = {
               "kind:post",
               "kind:blog",
@@ -74,6 +85,19 @@ jobs:
           statuses = {label for label in labels_lower if label.startswith("status:")}
           should_run = has_kind and bool(statuses)
           is_delete = "status:deleted" in labels_lower
+          comment = event.get("comment")
+          if comment:
+              comment_user = comment.get("user") or {}
+              comment_login = str(comment_user.get("login", "")).strip().lower()
+              comment_user_type = str(comment_user.get("type", "")).strip().lower()
+              body_kinds = {"kind:post", "kind:cat-pic"}
+              should_run = (
+                  should_run
+                  and bool(labels_lower & body_kinds)
+                  and bool(author_logins)
+                  and comment_login in author_logins
+                  and comment_user_type != "bot"
+              )
 
           normalized_event = dict(event)
           normalized_event["issue"] = current_issue
@@ -121,6 +145,8 @@ jobs:
 
       - name: Convert issue to Markdown
         if: steps.route.outputs.should_run == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: >
           python3 site/.github/scripts/issue_to_hugo_post.py
           "${{ steps.route.outputs.event_path }}"
