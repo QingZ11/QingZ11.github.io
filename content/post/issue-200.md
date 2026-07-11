@@ -4,10 +4,10 @@ date: "2026-07-04"
 summary: "致敬，人类史上最伟大的发明之一。"
 tags: []
 github_issue: 200
-lastmod: "2026-07-09T04:45:37+00:00"
+lastmod: "2026-07-11T10:51:16+00:00"
 ---
 
-<img width="2606" height="478" alt="Image" src="https://github.com/user-attachments/assets/b21b3874-6760-49ec-9f90-9adc3978ba55" />
+![](https://github.com/user-attachments/assets/b21b3874-6760-49ec-9f90-9adc3978ba55)
 
 随机抽卡了 mj，midjourney 只有每个月第一篇才会被我拎出来。十分不和谐的一组图，每张图我都很喜欢，拼在一起就分外的别扭。
 
