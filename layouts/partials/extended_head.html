@@ -41,8 +41,8 @@
 {{ end }}
 
 <!-- Google Analytics -->
-{{ if eq (getenv "HUGO_ENV") "production"}}
-{{ template "_internal/google_analytics.html" . }}
+{{ if hugo.IsProduction }}
+{{ partial "google_analytics.html" . }}
 {{ end }}
 
 <!-- Custom CSS for inline code -->
