@@ -4,10 +4,10 @@ date: "2026-08-02"
 summary: "看着窗外跑在明晃晃马路上的车子们，觉得它们内冷外热。。"
 tags: []
 github_issue: 208
-lastmod: "2026-08-02T08:15:51+00:00"
+lastmod: "2026-08-02T08:16:35+00:00"
 ---
 
-<img width="3294" height="594" alt="Image" src="https://github.com/user-attachments/assets/470a5b0b-d59e-4f16-8625-ae5b115d361d" />
+![](https://github.com/user-attachments/assets/470a5b0b-d59e-4f16-8625-ae5b115d361d)
 
 一个月用一次的 Midjourney，终于记得在续订之前取消了自动订阅。四月那次是自己手动订阅的还是自动完成的，我已经忘记了，反正就记得花了四千大洋，o.o 那就是说上面这张图折合人民币要 340？？？靠，那么贵的么。我真是败家
 
