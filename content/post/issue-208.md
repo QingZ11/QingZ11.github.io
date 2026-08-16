@@ -2,9 +2,9 @@
 title: "蝉鸣、热浪和冰咖啡·二六八月记（上）"
 date: "2026-08-02"
 summary: "看着窗外跑在明晃晃马路上的车子们，觉得它们内冷外热。。"
-tags: []
+tags: ["日记"]
 github_issue: 208
-lastmod: "2026-08-10T12:21:29+00:00"
+lastmod: "2026-08-16T08:02:13+00:00"
 ---
 
 ![](https://github.com/user-attachments/assets/470a5b0b-d59e-4f16-8625-ae5b115d361d)
