@@ -4,7 +4,7 @@ date: "2026-08-30"
 summary: "生日快乐 🍰"
 tags: ["随便bb"]
 github_issue: 215
-lastmod: "2026-08-30T03:43:43+00:00"
+lastmod: "2026-08-30T05:27:11+00:00"
 ---
 
 <img width="612" height="200" alt="Image" src="https://github.com/user-attachments/assets/83ae30ff-db16-435d-a18f-556efa0c4a44" />
@@ -15,7 +15,7 @@ lastmod: "2026-08-30T03:43:43+00:00"
 
 为了凑辞职的调休，今天和上周（农历）都在加班。拖着一周有 3 天都 2 点睡的身体，我的脑子已经不转了。书信要写什么呢？随便吧。
 
-<img width="1774" height="887" alt="Image" src="https://github.com/user-attachments/assets/04da3251-da2f-4f6b-808f-e1e2812395e9" />
+![](https://github.com/user-attachments/assets/04da3251-da2f-4f6b-808f-e1e2812395e9)
 
 midjourney 罢工了，加载不出来，让 ChatGPT 生图。打错了字，土（图）里要有 36。就那么诞生了这张图，后面修正了这个错误，但图也不好看。与其再生成，不如用回第一稿。
 
