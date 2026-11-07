@@ -1,10 +1,10 @@
 ---
-title: "昏暗的灯光洒在空荡的街道上·二六十月记（上）"
+title: "泡面的香气消失在冒着寒气的海面·二六十一月记（上）"
 date: "2026-11-07"
 summary: "天气预报说要来雨，我开着窗户等着傍晚暴雨的到来。"
 tags: ["日记"]
 github_issue: 230
-lastmod: "2026-11-07T09:23:01+00:00"
+lastmod: "2026-11-07T09:27:31+00:00"
 ---
 
 <img width="2918" height="530" alt="Image" src="https://github.com/user-attachments/assets/3caef5d2-2b85-4248-93b7-55f22bc5c8ee" />
